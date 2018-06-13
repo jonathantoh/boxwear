@@ -1,52 +1,123 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="registration.aspx.cs" Inherits="registration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+        <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 100px;
+        }
+        .auto-style3 {
+            width: 355px;
+            height: 24px;
+        }
+        .auto-style4 {
+            height: 24px;
+        }
+        .auto-style5 {
+            width: 338px;
+        }
+        .auto-style6 {
+            width: 338px;
+            height: 24px;
+        }
+        .auto-style7 {
+            width: 355px;
+            height: 27px;
+        }
+        .auto-style8 {
+            width: 338px;
+            height: 27px;
+        }
+        .auto-style9 {
+            height: 27px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div>
-    
-        <h1>Customer Registration</h1>
-        NAME&nbsp;
-        <asp:TextBox ID="tb_CustName" runat="server" Width="266px"></asp:TextBox>
-        <br />
-        <br />
-        NRIC&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_NRIC" runat="server" Width="163px"></asp:TextBox>
-        <br />
-        <br />
-        HP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="tb_Hp" runat="server" Width="183px"></asp:TextBox>
-        <br />
-        <br />
-        EMAIL
-        <asp:TextBox ID="tb_Email" runat="server" Width="262px" AutoCompleteType="JobTitle"></asp:TextBox>
-        <br />
-        <asp:Panel ID="Panel1" runat="server" GroupingText="GENDER" Width="350px">
-            <asp:RadioButtonList ID="rbl_Gender" runat="server" Width="186px">
-                <asp:ListItem>Female</asp:ListItem>
-                <asp:ListItem>Male</asp:ListItem>
-            </asp:RadioButtonList>
-        </asp:Panel>
-        <asp:Panel ID="Panel2" runat="server" GroupingText="NOTIFICATIONS" Width="351px">
-            Send product updates and promotion info to :<asp:CheckBoxList ID="cbl_Notifications" runat="server" Width="120px">
-                <asp:ListItem>HP</asp:ListItem>
-                <asp:ListItem>EMAIL</asp:ListItem>
-            </asp:CheckBoxList>
-        </asp:Panel>
-        <asp:Panel ID="Panel3" runat="server" GroupingText="BIRTHDAY MONTH" Width="352px">
-            <asp:DropDownList ID="ddl_BirthdayMonth" runat="server">
-                <asp:ListItem>Jan</asp:ListItem>
-                <asp:ListItem>Feb</asp:ListItem>
-                <asp:ListItem>Mar</asp:ListItem>
-                <asp:ListItem>Apr</asp:ListItem>
-                <asp:ListItem>May</asp:ListItem>
-                <asp:ListItem>Jun</asp:ListItem>
-            </asp:DropDownList>
-        </asp:Panel>
-        <br />
-        <br />
-        <asp:Button ID="btn_Submit" runat="server" Text="Submit" Width="160px" />
-    
-    </div>
+        <div>
 
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/boxwear-resize.png" Height="131px" Width="436px" />
+                    </td>
+                    <td class="auto-style5">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Label ID="Label1" runat="server" Text="First Name"></asp:Label>
+                    </td>
+                    <td class="auto-style5">
+                        <asp:TextBox ID="FnameTxt" runat="server"></asp:TextBox>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style3">
+                        <asp:Label ID="Label2" runat="server" Text="Last Name"></asp:Label>
+                    </td>
+                    <td class="auto-style6">
+                        <asp:TextBox ID="LnameTxt" runat="server"></asp:TextBox>
+                    </td>
+                    <td class="auto-style4"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Label ID="Label6" runat="server" Text="Email"></asp:Label>
+                    </td>
+                    <td class="auto-style5">
+                        <asp:TextBox ID="Email" runat="server"></asp:TextBox>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">
+                        <asp:Label ID="Label4" runat="server" Text="Mobile Number"></asp:Label>
+                    </td>
+                    <td class="auto-style8">
+                        <asp:TextBox ID="MobileNumber" runat="server"></asp:TextBox>
+                    </td>
+                    <td class="auto-style9"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        <asp:Label ID="Label5" runat="server" Text="Password"></asp:Label>
+                    </td>
+                    <td class="auto-style5">
+                        <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">
+                        &nbsp;</td>
+                    <td class="auto-style5">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style5">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style5">
+                        <asp:Button ID="Register" runat="server" Text="Register/Sign Up" OnClick="Register_Click" />
+                    &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style5">
+                        <asp:Label ID="Label7" runat="server" Text="Label" Visible="False"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
 
+        </div>
 </asp:Content>
