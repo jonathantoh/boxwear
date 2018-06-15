@@ -7,14 +7,15 @@
     <div class="loginbox">
     <img src="images/boxwear-resize.png" class="avatar"/>
         
-            <p>Username</p>
-            <input type="text" name="" placeholder="Enter Username"/>
+            <p>Email</p>
+            <asp:TextBox CssClass="form-control" ID="txtusername" placeholder="Enter Username" runat="server"></asp:TextBox>
             <p>Password</p>
-            <input type="password" name="" placeholder="Enter Password"/>
-            <input type="submit" name="" value="Login"/>
+            <asp:TextBox ID="txtpassword" placeholder="Enter Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:Label runat="server" ID="lblerror"></asp:Label>   
+        <asp:Button ID="btn_submit" CssClass="btn btn-primary" runat="server" Text="Login" OnClick="btn_submit_Click" />
     <asp:Label ID="forgetPW" runat="server" Text="Forget Password"></asp:Label>
     <br />
-    <asp:Label ID="register" runat="server" Text="Register"></asp:Label>
+        <asp:HyperLink ID="register"  NavigateUrl="~/registration.aspx" runat="server" >Register</asp:HyperLink>
         
         
     </div>

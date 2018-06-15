@@ -113,7 +113,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style5">
-                        <asp:Label ID="Label7" runat="server" Text="Label" Visible="False"></asp:Label>
+                        <asp:Label ID="lbl_error" runat="server" Text="" Visible="False"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>

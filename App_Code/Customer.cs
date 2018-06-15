@@ -9,6 +9,7 @@ using System.Configuration;
 /// <summary>
 /// Summary description for Customer
 /// </summary>
+/// TEST 
 public class Customer
 {
     string _connStr = ConfigurationManager.ConnectionStrings["customerDBContext"].ConnectionString;
@@ -104,17 +105,21 @@ public class Customer
     {
         int result = 0;
         string queryStr = "INSERT INTO customer(custFName, custLName, custContact, custEmail, custPassword)" + "values (@custFName,@custLName, @custContact, @custEmail,@custPassword)";
- //+ "values (@Product_ID, @Product_Name, @Product_Desc, @Unit_Price,@Product_Image,@Stock_Level)";
-        SqlConnection conn = new SqlConnection(_connStr);
-        SqlCommand cmd = new SqlCommand(queryStr, conn);
-        cmd.Parameters.AddWithValue("@custFName", this.FName);
-        cmd.Parameters.AddWithValue("@custLName", this.LName);
-        cmd.Parameters.AddWithValue("@custContact", this.Hp);
-        cmd.Parameters.AddWithValue("@custEmail", this.Email);
-        cmd.Parameters.AddWithValue("@custPassword", this.Password);
-        conn.Open();
-        result += cmd.ExecuteNonQuery(); // Returns no. of rows affected. Must be > 0
-        conn.Close();
-        return result;
+        //+ "values (@Product_ID, @Product_Name, @Product_Desc, @Unit_Price,@Product_Image,@Stock_Level)";
+
+            SqlConnection conn = new SqlConnection(_connStr);
+            SqlCommand cmd = new SqlCommand(queryStr, conn);
+            cmd.Parameters.AddWithValue("@custFName", this.FName);
+            cmd.Parameters.AddWithValue("@custLName", this.LName);
+            cmd.Parameters.AddWithValue("@custEmail", this.Email);
+            cmd.Parameters.AddWithValue("@custContact", this.Hp);
+            cmd.Parameters.AddWithValue("@custPassword", this.Password);
+            conn.Open();
+            result += cmd.ExecuteNonQuery(); // Returns no. of rows affected. Must be > 0
+
+            conn.Close();
+            return result;
+
+
     }//end Insert
 }
