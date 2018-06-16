@@ -21,7 +21,7 @@
     <table class="auto-style1">
         <tr>
             <td class="auto-style2" rowspan="3">
-                <asp:Image ID="img_Product" runat="server" Height="119px" Width="238px" />
+                <asp:Image ID="img_Products" runat="server" Height="116px" ImageUrl="~/images/boxwear-resize.png" Width="212px" />
             </td>
             <td class="auto-style4">
                 <asp:Label ID="lbl_ProdName" runat="server"></asp:Label>
@@ -43,5 +43,8 @@
     </table>
     Product ID =
     <asp:Label ID="lbl_ProdID" runat="server"></asp:Label>
+    <br />
+    <br />
+    
 </asp:Content>
 

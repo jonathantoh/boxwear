@@ -22,11 +22,12 @@ public partial class MenProducts : System.Web.UI.Page
         lbl_ProdDesc.Text = prod.Product_Desc.ToString();
         lbl_ProdID.Text = prod.Product_ID.ToString();
         lbl_Price.Text = prod.Product_Price.ToString("C");
-        img_Product.ImageUrl = "C:/Users/gohji/OneDrive/Documents/GitHub/boxwear/images/boxwear-logo.png" ;
+        img_Products.ImageUrl = "~/images/boxwear-resize.png" + prod.Product_Image;
     }
 
     protected void Btn_Add_Click(object sender, EventArgs e)
     {
-
+        string iProductID = prod.Product_ID.ToString();
+        ShoppingCart.Instance.AddItem(iProductID, prod);
     }
 }

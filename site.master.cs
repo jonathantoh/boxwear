@@ -11,4 +11,9 @@ public partial class site : System.Web.UI.MasterPage
     {
 
     }
+
+    protected void IB_Cart_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("ViewCart.aspx");
+    }
 }
