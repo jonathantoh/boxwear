@@ -13,7 +13,7 @@ using System.Web.Security;
 public partial class login : System.Web.UI.Page
 {
 
-    string _connStr = ConfigurationManager.ConnectionStrings["customerDBContext"].ConnectionString.ToString();
+    string _connStr = ConfigurationManager.ConnectionStrings["BoxWearDB"].ConnectionString.ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {

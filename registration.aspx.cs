@@ -12,7 +12,7 @@ using System.Configuration;
 public partial class registration : System.Web.UI.Page
 {
 
-    string _connStr = ConfigurationManager.ConnectionStrings["customerDBContext"].ConnectionString;
+    string _connStr = ConfigurationManager.ConnectionStrings["BoxWearDB"].ConnectionString;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -55,7 +55,7 @@ public partial class registration : System.Web.UI.Page
             cmd.ExecuteNonQuery(); // Returns no. of rows affected. Must be > 0
 
             Response.Write("<script>alert('Registeration successful');</script>");
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(1000);
             Response.Redirect("~/login.aspx");
         }
         catch
