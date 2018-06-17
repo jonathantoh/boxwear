@@ -13,62 +13,58 @@ using System.Web.Security;
 public partial class login : System.Web.UI.Page
 {
 
-    string _connStr = ConfigurationManager.ConnectionStrings["customerDBContext"].ConnectionString;
+    string _connStr = ConfigurationManager.ConnectionStrings["customerDBContext"].ConnectionString.ToString();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["user"] != null)
+        {
+            Response.Redirect("~/account.aspx");
+        }
     }
 
     protected void btn_submit_Click(object sender, EventArgs e)
     {
-        
+
         SqlConnection conn = new SqlConnection(_connStr);
         conn.Open();
-        SqlCommand cmd = new SqlCommand("SELECT * FROM customer where custEmail = @custEmail and custPassword = @custPassword", conn);
+        string query = "SELECT count(*) FROM customer where custEmail='" + txtusername.Text + "' and custPassword='" + txtpassword.Text + "'";
 
-        cmd.Parameters.AddWithValue("@custEmail", txtusername.Text);
-        cmd.Parameters.AddWithValue("@custPassword", txtpassword.Text);
-
-        SqlDataReader sdr = cmd.ExecuteReader();
-
-        if (sdr.Read())
+        SqlCommand cmd = new SqlCommand(query, conn);
+        string output = cmd.ExecuteScalar().ToString();
+        
+        if(output == "1")
         {
-            lblerror.Text = "Login Successful";
-        }else
+            //creating a session
+            Session["user"] = txtusername.Text;
+            Response.Redirect("~/account.aspx");
+        }
+        else
         {
-            lblerror.Text = "Login Unsuccessful";
+            Response.Write("Login Failed");
         }
 
-        conn.Close();
+        //USE BELOW FOR NO SESSION STORING
+        
+        //SqlConnection conn = new SqlConnection(_connStr);
+        //conn.Open();
+        //SqlCommand cmd = new SqlCommand("SELECT * FROM customer where custEmail = @custEmail and custPassword = @custPassword", conn);
 
-        //if (conn.State == ConnectionState.Open)
+        //cmd.Parameters.AddWithValue("@custEmail", txtusername.Text);
+        //cmd.Parameters.AddWithValue("@custPassword", txtpassword.Text);
+
+        //SqlDataReader sdr = cmd.ExecuteReader();
+
+        //if (sdr.Read())
         //{
-        //    SqlDataReader sdr = cmd.ExecuteReader();
-        //    while (sdr.Read())
-        //    {
-        //        if (sdr[4].ToString().Equals(txtusername.Text) && sdr[5].ToString().Equals(txtpassword.Text))
-        //        {
-        //            Response.Write("<script>alert('login success1');</script>");
-        //            Response.Cookies["uname"].Value = sdr[1].ToString();
-        //            Response.Cookies["u_id"].Value = sdr[0].ToString();
-        //            FormsAuthentication.RedirectFromLoginPage(txtusername.Text, false);
-        //            Response.Redirect("~/Pages/Home.aspx");
-
-        //            Response.Write("<script>alert('login success');</script>");
-        //        }
-        //        else
-        //        {
-        //            lblerror.Text = "Please enter write username and password";
-        //            Response.Write("<script>alert('login failure');</script>");
-        //        }
-
-        //    }
-
+        //    lblerror.Text = "Login Successful";
+        //}else
+        //{
+        //    lblerror.Text = "Login Unsuccessful";
         //}
 
-        //else
-        //{
+        //conn.Close();
 
-        //}
+
     }
 }

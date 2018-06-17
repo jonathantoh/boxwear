@@ -135,6 +135,8 @@
             display: block;
         }
      </style>
+
+    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css" />
 </head>
 <body>
     <form id="form1" runat="server">
