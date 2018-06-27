@@ -23,11 +23,11 @@ public partial class registration : System.Web.UI.Page
     {
         //int result = 0;
 
-        //customer cust = new customer(fnametxt.text, lnametxt.text, email.text, mobilenumber.text, password.text);
+        //Customer cust = new Customer(fnametxt.text, lnametxt.text, email.text, mobilenumber.text, password.text);
         //result = cust.productinsert();
         //if (result > 0)
         //{
-        //    //string saveimg = server.mappath(" ") + "\\" + image;
+        //    //string saveimg = server.mappath(" ") + "\\" + image; byubhub
         //    //lbl_result.text = saveimg.tostring();
         //    //fileupload1.saveas(saveimg);
         //    //loadproductinfo();
