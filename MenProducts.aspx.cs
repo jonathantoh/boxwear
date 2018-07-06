@@ -39,14 +39,11 @@ public partial class MenProducts : System.Web.UI.Page
         lbl_ProdName.Text = prod.Product_Name;
         lbl_ProdDesc.Text = prod.Product_Desc;
         lbl_Price.Text = prod.Product_Price.ToString("c");
-        img_Products.ImageUrl = "~/Images/unknown.png";
+        img_Products.ImageUrl = "~/images/boxwear-resize.png";
 
         // Store the value in invisible fields
         lbl_Price.Text = prod.Product_Price.ToString();
         lbl_ProdID.Text = prodID.ToString();
-
-
-
     }
 
     protected void Btn_Add_Click(object sender, EventArgs e)
@@ -55,4 +52,10 @@ public partial class MenProducts : System.Web.UI.Page
         string iProductID = prod.Product_ID.ToString();
         ShoppingCart.Instance.AddItem(iProductID, prod);
     }
+
+    private void BindItem()
+    {
+
+    }
+    
 }
