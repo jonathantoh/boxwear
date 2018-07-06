@@ -43,10 +43,7 @@ public partial class ViewCart : System.Web.UI.Page
         }
     }
 
-    protected void btn_Back_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("MenProducts.aspx");
-    }
+
 
     protected void btn_Clear_Click(object sender, EventArgs e)
     {

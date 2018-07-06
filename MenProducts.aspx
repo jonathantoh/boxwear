@@ -21,7 +21,7 @@
     <table class="auto-style1">
         <tr>
             <td class="auto-style2" rowspan="3">
-                <asp:Image ID="img_Products" runat="server" Height="116px" ImageUrl="~/images/boxwear-resize.png" Width="212px" />
+                <asp:Image ID="img_Products" runat="server" Height="125px" ImageUrl="~/Images/unknown.png" Width="237px" />
             </td>
             <td class="auto-style4">
                 <asp:Label ID="lbl_ProdName" runat="server"></asp:Label>
@@ -30,7 +30,18 @@
             </td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
+            <td>
+                <select>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+                <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:ListItem>Small</asp:ListItem>
+                    <asp:ListItem>Medium</asp:ListItem>
+                    <asp:ListItem>Large</asp:ListItem>
+                </asp:DropDownList>
+            </td>
         </tr>
         <tr>
             <td class="auto-style3">

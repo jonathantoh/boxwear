@@ -13,7 +13,7 @@
                 <ItemTemplate>
                     <asp:TextBox ID="tb_Quantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:TextBox>
                     <br />
-                    <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" Text='<%# Eval("ItemID") %>'></asp:LinkButton>
+                  <!-- <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" Text='<%# Eval("ItemID") %>'></asp:LinkButton> -->
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Product_Price" DataFormatString="{0:C}" HeaderText="Unit Price" />
@@ -22,7 +22,7 @@
     </asp:GridView>
     Total Price
 
-    =
+    = $
     <asp:Label ID="lbl_TotalPrice" runat="server"></asp:Label>
    
     <br />
@@ -33,6 +33,5 @@
 <br />
 <asp:Button ID="btn_Update" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />
 <asp:Button ID="btn_Clear" runat="server" OnClick="btn_Clear_Click" Text="Clear Cart" />
-<asp:Button ID="btn_Back" runat="server" OnClick="btn_Back_Click" Text="Back" />
 
 </asp:Content>

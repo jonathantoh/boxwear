@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|PT+Sans+Narrow" rel="stylesheet"/>
     <!-- Bootstrap core CSS -->
-    <link href="~/CSS/bootstrap.min.css" rel="stylesheet"/>
+    <%--<link href="~/CSS/bootstrap.min.css" rel="stylesheet"/>
     <link href="~/CSS/fontawesome.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
@@ -146,7 +146,7 @@
         }
      </style>
 
-    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css" />
+   <!-- <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css" /> -->
 </head>
 <body>
     <form id="form1" runat="server">
@@ -158,11 +158,12 @@
                <a href="#news">News</a>
                <a href="#contact">Contact</a>
                <a href="#about">About</a>
-                <div class ="dropdown">
+             <!--  <a href="ProductView.aspx" class="active">Products</a> -->
+               <div class ="dropdown">
                 <button class="dropbtn">Products</button>
                    <div class="dropdown-content">
-                       <a href ="MenProducts.aspx">Men</a>
-                       <a href ="MenProducts.aspx">Women</a>
+                       <a href ="ProductView.aspx">Men</a>
+                       <a href ="ProductViewWomen.aspx">Women</a>
                        <a href ="MenProducts.aspx">Children</a>
                    </div>
                </div>
