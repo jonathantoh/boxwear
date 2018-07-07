@@ -26,44 +26,38 @@ public partial class login : System.Web.UI.Page
     protected void btn_submit_Click(object sender, EventArgs e)
     {
 
-        SqlConnection conn = new SqlConnection(_connStr);
-        conn.Open();
-        string query = "SELECT count(*) FROM customer where custEmail='" + txtusername.Text + "' and custPassword='" + txtpassword.Text + "'";
+        int result = 0;
+        Customer cust = new Customer(txtusername.Text, txtpassword.Text);
+        result = cust.UserLogin();
 
-        SqlCommand cmd = new SqlCommand(query, conn);
-        string output = cmd.ExecuteScalar().ToString();
-        
-        if(output == "1")
+        if (result > 0)
         {
-            //creating a session
             Session["user"] = txtusername.Text;
             Response.Redirect("~/account.aspx");
         }
         else
         {
-            Response.Write("Login Failed");
+            Response.Write("<script>alert('Login NOT successful');</script>");
         }
-
-        //USE BELOW FOR NO SESSION STORING
-        
         //SqlConnection conn = new SqlConnection(_connStr);
         //conn.Open();
-        //SqlCommand cmd = new SqlCommand("SELECT * FROM customer where custEmail = @custEmail and custPassword = @custPassword", conn);
+        //string query = "SELECT count(*) FROM customer where custEmail='" + txtusername.Text + "' and custPassword='" + txtpassword.Text + "'";
 
-        //cmd.Parameters.AddWithValue("@custEmail", txtusername.Text);
-        //cmd.Parameters.AddWithValue("@custPassword", txtpassword.Text);
+        //SqlCommand cmd = new SqlCommand(query, conn);
+        //string output = cmd.ExecuteScalar().ToString();
 
-        //SqlDataReader sdr = cmd.ExecuteReader();
-
-        //if (sdr.Read())
+        //if(output == "1")
         //{
-        //    lblerror.Text = "Login Successful";
-        //}else
+        //    //creating a session
+        //    Session["user"] = txtusername.Text;
+        //    Response.Redirect("~/account.aspx");
+        //}
+        //else
         //{
-        //    lblerror.Text = "Login Unsuccessful";
+        //    Response.Write("Login Failed");
         //}
 
-        //conn.Close();
+
 
 
     }

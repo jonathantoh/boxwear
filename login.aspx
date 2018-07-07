@@ -13,7 +13,8 @@
 <style type="text/css">
 	body {
 		color: #fff;
-		background: #3598dc;
+		background: white;
+        color: grey;
 	}
 	.form-control {
 		min-height: 41px;
