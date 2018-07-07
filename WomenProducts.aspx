@@ -1,27 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="MenProducts.aspx.cs" Inherits="MenProducts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site.master" AutoEventWireup="true" CodeFile="WomenProducts.aspx.cs" Inherits="WomenProducts" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-        .auto-style2 {
-            width: 245px;
-        }
-        .auto-style3 {
-            height: 56px;
-        }
-    .auto-style4 {
-        height: 50px;
-    }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    MEN PRODUCTS
+    WOMEN PRODUCTS
     <table class="auto-style1">
         <tr>
             <td class="auto-style2" rowspan="3">
-                <asp:Image ID="img_Products" runat="server" Height="125px" Width="237px" />
+                <asp:Image ID="img_Products" runat="server" Height="125px" ImageUrl="~/Images/unknown.png" Width="237px" />
             </td>
             <td class="auto-style4">
                 <asp:Label ID="lbl_ProdName" runat="server"></asp:Label>
@@ -31,12 +17,11 @@
         </tr>
         <tr>
             <td>
-                
-                <asp:DropDownList ID="DropDownList1" runat="server">
-                    <asp:ListItem>Small</asp:ListItem>
-                    <asp:ListItem>Medium</asp:ListItem>
-                    <asp:ListItem>Large</asp:ListItem>
-                </asp:DropDownList>
+                <select>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
             </td>
         </tr>
         <tr>
@@ -54,4 +39,3 @@
     <br />
     
 </asp:Content>
-

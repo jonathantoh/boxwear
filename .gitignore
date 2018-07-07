@@ -1,0 +1,5 @@
+
+*.mdf
+App_Data/BoxWearDB.mdf
+App_Data/BoxWearDB_Log.ldf
+site.master
