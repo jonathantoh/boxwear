@@ -339,7 +339,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <asp:Button ID="updateBtn" onclick="updateBtn_Click" Class="btn btn-primary" runat="server" Text="Save changes" />
+              <asp:Button ID="updateBtn" onclick="updateProfileBtn_Click" Class="btn btn-primary" UseSubmitBehavior="false" runat="server" Text="Save changes" />
           </div>
         </div>
       </div>

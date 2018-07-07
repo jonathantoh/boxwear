@@ -54,8 +54,9 @@ public partial class account : System.Web.UI.Page
         Response.Redirect("~/login.aspx");
     }
 
-    protected void updateBtn_Click(object sender, EventArgs e)
+    protected void updateProfileBtn_Click(object sender, EventArgs e)
     {
+        Response.Write("<script>alert('Profile updated successfully');</script>");
         profileUpdate();
     }
 

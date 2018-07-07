@@ -19,10 +19,7 @@
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
-<<<<<<< HEAD
 
-=======
->>>>>>> f4089c60f615829277e74f61cd4de8192136ed84
 
     
    
@@ -30,82 +27,80 @@
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 
+    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+
      <style type="text/css">
-        body {
-          margin: 0;
-          font-family: 'Fjalla One', Helvetica, sans-serif;
-        }
+        /* Navbar */
+.navbar{
+  min-height: 33px !important;
+  margin-bottom:0;
+  border-radius:0;
+}
 
-        .topnav {
-          overflow: hidden;
-          background-color: #333;
-        }
+.navbar-nav > li > a, .navbar-brand{
+  padding-top:6px !important;
+  padding-bottom:0 !important;
+  height: 33px;
+}
 
-        .topnav a {
-          float: left;
-          display: block;
-          color: #f2f2f2;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-        }
+.navbar-default {
+  background-color: #e74c3c;
+  border-color: #c0392b;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar-default .navbar-toggle {
+  border-color: #c0392b;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #c0392b;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffbbbc;
+}
 
-        .topnav a:hover {
-          background-color: #ddd;
-          color: black;
-        }
-
-        .active {
-          background-color: #4CAF50;
-          color: white;
-        }
-
-        .topnav .icon {
-          display: none;
-        }
-        @media screen and (max-width: 600px) {
-          .topnav a:not(:first-child) {display: none;}
-          .topnav a.icon {
-            float: right;
-            display: block;
-          }
-        }
-
-        @media screen and (max-width: 600px) {
-          .topnav.responsive {position: relative;}
-          .topnav.responsive .icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-          }
-          .topnav.responsive a {
-            float: none;
-            display: block;
-            text-align: left;
-          }
-        }
         #IB_Cart
         {
             float:right;
             
-        }
-         .auto-style1 {
-             margin-left: 7px;
-         }
-         .navbar {
-          overflow: hidden;
-          background-color: #333;
-          font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .navbar a {
-         float: left;
-         font-size: 16px;
-         color: white;
-         text-align: center;
-         padding: 14px 16px;
-         text-decoration: none;
         }
        
         .dropdown {
@@ -156,35 +151,41 @@
         }
      </style>
 
-<<<<<<< HEAD
-=======
-   <!-- <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css" /> -->
->>>>>>> f4089c60f615829277e74f61cd4de8192136ed84
 </head>
 <body>
     <form id="form1" runat="server">
      <div>
         
-            <div class="topnav" id="myTopnav">
-             
-               <a href="home.aspx" class="active">Home</a>
-               <a href="#news">News</a>
-               <a href="#contact">Contact</a>
-               <a href="#about">About</a>
-             <!--  <a href="ProductView.aspx" class="active">Products</a> -->
-               <div class ="dropdown">
-                <button class="dropbtn">Products</button>
-                   <div class="dropdown-content">
-                       <a href ="ProductView.aspx">Men</a>
-                       <a href ="ProductViewWomen.aspx">Women</a>
-                       <a href ="MenProducts.aspx">Children</a>
-                   </div>
-               </div>
-                <asp:ImageButton ID="IB_Cart" runat="server" Height="49px" Width="55px" ImageUrl="~/Images/shoppingcarticon.png" OnClick="IB_Cart_Click" CssClass="auto-style1" />
-               
-            
+            <nav class="navbar navbar-default" >
+      <div class="container" >
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="home.aspx">
+              <img src="images/boxwear-resize.png" style="width:auto;height:30px;display: block; margin-left: auto;margin-right: auto;"/></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="home.aspx">Home</a></li>
+            <li><a href="MenProducts.aspx">Men</a></li>
+            <li><a href="#">Women</a></li>
+              <li><a href="#">Children</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="account.aspx"><asp:Label ID="welcome" runat="server" Text="Login"></asp:Label></a></li>
+            <li>
+                <asp:LinkButton runat="server" Text="Logout" ID="lbtnLogout" OnClick="lbtnLogout_Click"></asp:LinkButton>
 
-            </div>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
             <script>
             function myFunction() {
