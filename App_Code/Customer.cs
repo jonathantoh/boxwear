@@ -25,7 +25,7 @@ public class Customer
     private string _Country = null;
     private string _Gender = null;
     private string _Password = null;
-
+    private int _RewardPoints = 0;
 
     //Empty or Default class constructor
     public Customer()
@@ -39,6 +39,7 @@ public class Customer
         this.City = null;
         this.Country = null;
         this.Password = null;
+        this.RewardPoints = 0;
     }
     //overloaded class constructor with 4 parameters
     public Customer(string p_FName, string p_LName, string p_Hp, string p_Email, string p_Password)
@@ -50,7 +51,7 @@ public class Customer
         this.Password = p_Password;
     }
 
-    public Customer(string p_FName, string p_LName ,string p_Email, string p_Hp, string p_Address, string p_Postal, string p_City, string p_Country)
+    public Customer(string p_FName, string p_LName ,string p_Email, string p_Hp, string p_Address, string p_Postal, string p_City, string p_Country, int p_RewardPoints)
     {
         this._FName = p_FName;
         this._LName = p_LName;
@@ -61,6 +62,8 @@ public class Customer
         this._Postal = p_Postal;
         this._City = p_City;
         this._Country = p_Country;
+
+        this._RewardPoints = p_RewardPoints;
 
     }
 
@@ -143,6 +146,12 @@ public class Customer
         set { _Password = value; }
     }
 
+    public int RewardPoints
+    {
+        get { return _RewardPoints; }
+        set { _RewardPoints = value; }
+    }
+
 
     public int UserInsert()
     {
@@ -219,7 +228,10 @@ public class Customer
             City = ds.Tables[0].Rows[0]["city"].ToString();
             Country = ds.Tables[0].Rows[0]["country"].ToString();
 
-            custDetails = new Customer(FName, LName, email, Hp, Address, Postal, City, Country);
+            //Points
+            RewardPoints = (int) ds.Tables[0].Rows[0]["rewardPoints"];
+
+            custDetails = new Customer(FName, LName, email, Hp, Address, Postal, City, Country, RewardPoints);
         }
         else
         {
@@ -272,4 +284,43 @@ public class Customer
 
         return nofRow;
     }//end Update
+
+
+
+
+    public int addDailyReward(string custEmail, int points)
+    {
+        string queryStr = "UPDATE customer SET" + " rewardPoints = @rewardPoints" + " WHERE custEmail = '" + custEmail + "'";
+        //+ "values (@Product_ID, @Product_Name, @Product_Desc, @Unit_Price,@Product_Image,@Stock_Level)";
+
+        SqlConnection conn = new SqlConnection(_connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@rewardPoints", (points+1));
+
+        conn.Open();
+        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+
+        conn.Close();
+
+        return nofRow;
+    }
+
+    public int buyGitCards(string custEmail, int points, int pointsToDeduct)
+    {
+        string queryStr = "UPDATE customer SET" + " rewardPoints = @rewardPoints" + " WHERE custEmail = '" + custEmail + "'";
+        //+ "values (@Product_ID, @Product_Name, @Product_Desc, @Unit_Price,@Product_Image,@Stock_Level)";
+
+        SqlConnection conn = new SqlConnection(_connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@rewardPoints", (points - pointsToDeduct));
+
+        conn.Open();
+        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+
+        conn.Close();
+
+        return nofRow;
+    }
 }

@@ -46,6 +46,9 @@ public partial class account : System.Web.UI.Page
             //conn.Open();
             showdata();
         }
+
+        int points = custDetails.RewardPoints;
+        lbl_points.Text = points.ToString();
     }
 
     protected void btnlogout_Click(object sender, EventArgs e)
