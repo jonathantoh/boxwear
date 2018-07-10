@@ -66,8 +66,8 @@
               <a href="account.aspx" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="account.aspx" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Profile <span class="badge">12</span></a>
-              <a href="myRewards.aspx" class="list-group-item"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> My Rewards <span class="badge">33</span></a>
+              <a href="account.aspx" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Profile </a>
+              <a href="myRewards.aspx" class="list-group-item active"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> My Rewards </a>
               <asp:linkbutton class="list-group-item" runat="server" onclick="btnlogout_Click"><span class="glyphicon">&#xe163;</span> Logout <span class="badge"></span></asp:linkbutton>
             </div>
 
@@ -89,6 +89,7 @@
 
              <div class="panel panel-default">
                <div class="panel-body">
+                   
                    <strong>Come back everyday to earn FREE daily rewards!<br /><br /></strong>
                    <asp:Button ID="dailyReward" Class="btn btn-primary" UseSubmitBehavior="false" runat="server" Text="Daily Reward 1 POINT" OnClick="dailyReward_Click" />
                </div>
@@ -245,12 +246,32 @@
                   <p>Are you sure you want to claim?</p>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btn_buy25" class="btn btn-default" OnClick="btn_buy25_Click" runat="server" Text="Yes" />
+                    <asp:Button ID="btn_buy25" class="btn btn-default" OnClick="btn_buy25_Click" runat="server" Text="Yes" data-toggle="modal" data-target="#myModalCode" />
                   <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
               </div>
             </div>
           </div>
+
+
+    <%--<!-- Modal -->
+          <div class="modal fade" id="myModalCode" role="dialog">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Your Code (Gift Card $25)</h4>
+                </div>
+                <div class="modal-body">
+                  <p><asp:Label ID="codeGeneratered" runat="server" Text="Code"></asp:Label></p>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="OK" />
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>--%>
 
 
 </asp:Content>

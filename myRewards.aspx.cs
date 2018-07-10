@@ -7,6 +7,14 @@ using System.Web.UI.WebControls;
 
 public partial class myRewards : System.Web.UI.Page
 {
+    //randomizer
+    private static Random random = new Random();
+    public static string RandomString(int length)
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        return new string(Enumerable.Repeat(chars, length)
+          .Select(s => s[random.Next(s.Length)]).ToArray());
+    }   
 
     Customer custDetails;
     protected void Page_Load(object sender, EventArgs e)
@@ -26,8 +34,12 @@ public partial class myRewards : System.Web.UI.Page
             txtuser.Text = "Hello, " + custDetails.FName;
         }
 
+        //show reward points
         int points = custDetails.RewardPoints;
-        lbl_points.Text = points.ToString(); 
+        lbl_points.Text = points.ToString();
+
+        ////create gift card code
+        //codeGeneratered.Text = myRewards.RandomString(10);
     }
 
     protected void btnlogout_Click(object sender, EventArgs e)
@@ -77,8 +89,10 @@ public partial class myRewards : System.Web.UI.Page
 
             if (result > 0)
             {
-                Response.Write("<script>alert('Points updated successfully');</script>");
-                Response.Redirect("~/myRewards.aspx");
+                Response.Write("<script>alert('Your gift code " + myRewards.RandomString(10) + "');</script>");
+                
+                
+                //Response.Redirect("~/myRewards.aspx");
             }
             else
             {
@@ -88,6 +102,14 @@ public partial class myRewards : System.Web.UI.Page
 
         
     }
+
+
+    //public void getCode()
+    //{
+    //    //create gift card code
+    //    codeGeneratered.Text = myRewards.RandomString(10);
+    //}
+
 
     protected void btn_buy50_Click(object sender, EventArgs e)
     {

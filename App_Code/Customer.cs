@@ -42,13 +42,14 @@ public class Customer
         this.RewardPoints = 0;
     }
     //overloaded class constructor with 4 parameters
-    public Customer(string p_FName, string p_LName, string p_Hp, string p_Email, string p_Password)
+    public Customer(string p_FName, string p_LName, string p_Hp, string p_Email, string p_Password, int p_RewardPoints)
     {
         this._FName = p_FName;
         this._LName = p_LName;
         this.Hp = p_Hp;
         this.Email = p_Email;
         this.Password = p_Password;
+        this.RewardPoints = p_RewardPoints;
     }
 
     public Customer(string p_FName, string p_LName ,string p_Email, string p_Hp, string p_Address, string p_Postal, string p_City, string p_Country, int p_RewardPoints)
@@ -81,7 +82,7 @@ public class Customer
 
     // Constructor that take in only email. The other attributes will be set to 0 or empty.
     public Customer(string p_Email)
-        : this(p_Email, "", "", "", "")
+        : this(p_Email, "", "", "", "",0)
     {
     }
 
@@ -156,7 +157,7 @@ public class Customer
     public int UserInsert()
     {
         int result = 0;
-        string queryStr = "INSERT INTO customer(custFName, custLName, custContact, custEmail, custPassword)" + "values (@custFName,@custLName, @custContact, @custEmail,@custPassword)";
+        string queryStr = "INSERT INTO customer(custFName, custLName, custContact, custEmail, custPassword,rewardPoints)" + "values (@custFName,@custLName, @custContact, @custEmail,@custPassword,@rewardPoints)";
         //+ "values (@Product_ID, @Product_Name, @Product_Desc, @Unit_Price,@Product_Image,@Stock_Level)";
 
         try
@@ -168,6 +169,7 @@ public class Customer
             cmd.Parameters.AddWithValue("@custEmail", this.Email);
             cmd.Parameters.AddWithValue("@custContact", this.Hp);
             cmd.Parameters.AddWithValue("@custPassword", this.Password);
+            cmd.Parameters.AddWithValue("@rewardPoints", this.RewardPoints);
             conn.Open();
             result += cmd.ExecuteNonQuery(); // Returns no. of rows affected. Must be > 0
             conn.Close();

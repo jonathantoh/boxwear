@@ -40,7 +40,7 @@ public partial class registration : System.Web.UI.Page
 
         int result = 0;
 
-        Customer cust = new Customer(FnameTxt.Text, LnameTxt.Text, MobileNumber.Text, Email.Text, Password.Text);
+        Customer cust = new Customer(FnameTxt.Text, LnameTxt.Text, MobileNumber.Text, Email.Text, Password.Text, 0);
         result = cust.UserInsert();
 
         if(result > 0)
