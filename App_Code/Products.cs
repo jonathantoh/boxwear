@@ -6,8 +6,9 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+
 /// <summary>
-/// Summary description for Products
+/// Summary description for MenProducts
 /// </summary>
 public class Products
 {
@@ -20,8 +21,10 @@ public class Products
     private int _ProdQuantity = 0; //added
     private decimal _ProdPrice = 0;
     private string _ProdImage = "";
+    // private string _ProdType = ""; //added
     private string _ProdCategory = ""; //added
     private string _ProdStatus = "";
+
 
 
     /**public Products()
@@ -33,7 +36,6 @@ public class Products
     }**/
     public Products()
     {
-
     }
 
 
@@ -52,13 +54,13 @@ public class Products
     }
 
     public Products(string prodName, string prodDesc, string prodBrand, int prodQuantity, decimal prodPrice, string prodImage, string prodCategory, string prodStatus) //Have change -prodBrand
-         : this(null, prodName, prodDesc, prodBrand, prodQuantity, prodPrice, prodImage, prodCategory, prodStatus)
+        : this(null, prodName, prodDesc, prodBrand, prodQuantity, prodPrice, prodImage, prodCategory, prodStatus)
     {
     }
 
 
     public Products(string prodID)
-       : this(prodID, "", "", "", 0, 0, "", "", "")
+        : this(prodID, "", "", "", 0, 0, "", "", "")
     {
     }
 
@@ -109,13 +111,16 @@ public class Products
     }
 
 
+
     public Products getProduct(string prodID)
     {
         Products prodDetail = null;
 
+
         string prod_Name, prod_Desc, prod_Image, prod_Category, prod_Brand, stock_Level;
         decimal unit_Price;
-        int stock_Quantity;
+        int stock_Quantity; //Change in datatype for stock_Level
+
 
         string queryStr = "SELECT * FROM Outfits WHERE OutfitID = @ProdID";
         SqlConnection conn = new SqlConnection(connStr);
@@ -150,15 +155,18 @@ public class Products
         return prodDetail;
     }
 
+
     public List<Products> getProductAll()
     {
         List<Products> prodList = new List<Products>();
+
 
         string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level;
         decimal unit_Price;
         int stock_Quantity;
 
-        string queryStr = "SELECT * FROM Outfits Order By OutfitName";
+
+        string queryStr = "SELECT * FROM Outfits where OutfitID LIKE '% - M' Order By OutfitName";
 
 
         SqlConnection conn = new SqlConnection(connStr);
@@ -167,7 +175,50 @@ public class Products
         SqlDataReader dr = cmd.ExecuteReader();
 
 
-        //continue to read the resultsets row by row if not the end
+        //Continue to read the resultsets row by row if not the end
+        while (dr.Read())
+        {
+            prod_ID = dr["OutfitID"].ToString();
+            prod_Name = dr["OutfitName"].ToString();
+            prod_Desc = dr["OutfitDesc"].ToString();
+            prod_Image = dr["OutfitImage"].ToString();
+            prod_Category = dr["OutfitCategory"].ToString();
+            prod_Brand = dr["OutfitBrand"].ToString();
+            unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
+            stock_Level = dr["OutfitStatus"].ToString();
+            stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
+
+
+            Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level); //Changes prod_Brand
+            prodList.Add(a);
+        }
+        conn.Close();
+        dr.Close();
+        dr.Dispose();
+
+        return prodList;
+    }
+
+    public List<Products> getProductAllWomen()
+    {
+        List<Products> prodList = new List<Products>();
+
+
+        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level;
+        decimal unit_Price;
+        int stock_Quantity;
+
+
+        string queryStr = "SELECT * FROM Outfits where OutfitID LIKE '% - W' Order By OutfitName";
+
+
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        conn.Open();
+        SqlDataReader dr = cmd.ExecuteReader();
+
+
+        //Continue to read the resultsets row by row if not the end
         while (dr.Read())
         {
             prod_ID = dr["OutfitID"].ToString();
