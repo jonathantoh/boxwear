@@ -14,6 +14,9 @@
     .auto-style4 {
         height: 50px;
     }
+        .auto-style5 {
+            height: 29px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -21,7 +24,7 @@
     <table class="auto-style1">
         <tr>
             <td class="auto-style2" rowspan="3">
-                <asp:Image ID="img_Products" runat="server" Height="125px" Width="237px" />
+                <asp:Image ID="img_Products" runat="server" Height="125px" ImageUrl="~/Images/boxwear-resize.png" Width="237px" />
             </td>
             <td class="auto-style4">
                 <asp:Label ID="lbl_ProdName" runat="server"></asp:Label>
@@ -30,9 +33,8 @@
             </td>
         </tr>
         <tr>
-            <td>
-                
-                <asp:DropDownList ID="DropDownList1" runat="server">
+            <td class="auto-style5">
+                &nbsp;<asp:DropDownList ID="ddl_Size" runat="server">
                     <asp:ListItem>Small</asp:ListItem>
                     <asp:ListItem>Medium</asp:ListItem>
                     <asp:ListItem>Large</asp:ListItem>

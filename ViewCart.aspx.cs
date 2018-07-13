@@ -13,6 +13,7 @@ public partial class ViewCart : System.Web.UI.Page
         {
             LoadCart();
         }
+        //  lbl_Size.Text = //trying to display size
     }
     protected void LoadCart()
     {
@@ -25,10 +26,6 @@ public partial class ViewCart : System.Web.UI.Page
             total = total + item.TotalPrice;
         }
         lbl_TotalPrice.Text = total.ToString();
-    }
-
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-    {
 
     }
 

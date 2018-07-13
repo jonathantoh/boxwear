@@ -190,4 +190,63 @@ public class Products
 
         return prodList;
     }
+
+    public int ProductInsert()
+    {
+        string msg = null;
+        int result = 0;
+
+        string queryStr = "INSERT INTO Outfits(OutfitID, OutfitName, OutfitDesc, OutfitBrand, OutfitQuantity, OutfitPrice, OutfitImage, OutfitCategory, OutfitStatus)" //follow DB table name
+           + "values (@Product_ID, @Product_Name, @Product_Desc, @Product_Brand, @Product_Quantity, @Product_Price, @Product_Image, @Product_Category, @Product_Status)"; //Can put own name
+
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
+        cmd.Parameters.AddWithValue("@Product_Name", this.Product_Name);
+        cmd.Parameters.AddWithValue("@Product_Desc", this.Product_Desc);
+        cmd.Parameters.AddWithValue("@Product_Brand", this.Product_Brand);
+        cmd.Parameters.AddWithValue("@Product_Quantity", this.Product_Quantity);
+        cmd.Parameters.AddWithValue("@Product_Price", this.Product_Price);
+        cmd.Parameters.AddWithValue("@Product_Image", this.Product_Image);
+        cmd.Parameters.AddWithValue("@Product_Category", this.Product_Category);
+        cmd.Parameters.AddWithValue("@Product_Status", this.Product_Status);
+
+        conn.Open();
+        result += cmd.ExecuteNonQuery();
+        conn.Close();
+
+
+        return result;
+    } //end of insert
+
+    public int ProductDelete(string ID)
+    {
+        string queryStr = "DELETE FROM Outfits WHERE OutfitID = @ID";
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@ID", ID);
+        conn.Open();        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+        conn.Close();
+        return nofRow;
+    } //end Delete
+
+    public int ProductUpdate(string pId, string pName, decimal pUnitPrice)
+    {
+        string queryStr = "UPDATE Outfits SET" +
+        //" Product_ID = @productID, " +
+        " OutfitName = @productName, " +
+        " OutfitPrice = @unitPrice " +
+        " WHERE OutfitID = @productID";
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@productID", pId);
+        cmd.Parameters.AddWithValue("@productName", pName);
+        cmd.Parameters.AddWithValue("@unitPrice", pUnitPrice);
+        conn.Open();
+        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+        conn.Close();
+        return nofRow;
+    }//end Update
 }

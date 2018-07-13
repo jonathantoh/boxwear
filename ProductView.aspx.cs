@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -7,6 +10,7 @@ using System.Web.UI.WebControls;
 
 public partial class ProductView : System.Web.UI.Page
 {
+
     Products aProd = new Products();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -17,6 +21,7 @@ public partial class ProductView : System.Web.UI.Page
     }
     protected void bind()
     {
+
         List<Products> prodList = new List<Products>();
         prodList = aProd.getProductAll();
         gvProduct.DataSource = prodList;

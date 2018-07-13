@@ -28,6 +28,6 @@
         <SortedAscendingCellStyle BackColor="#F5F7FB" />
         <SortedAscendingHeaderStyle BackColor="#6D95E1" />
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
-        <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" /> 
 </asp:GridView>
 </asp:Content>

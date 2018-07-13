@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
-    <asp:GridView ID="gv_CartView" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand">
+    <asp:GridView ID="gv_CartView" runat="server" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand">
         <Columns>
             <asp:BoundField DataField="ItemID" HeaderText="Product ID" />
             <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
@@ -24,8 +24,9 @@
 
     = $
     <asp:Label ID="lbl_TotalPrice" runat="server"></asp:Label>
-   
+    
     <br />
+    <asp:Label ID="lbl_Size" runat="server"></asp:Label>
 <br />
    
     <asp:Label ID="lbl_Error" runat="server"></asp:Label>

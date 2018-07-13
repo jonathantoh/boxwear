@@ -19,7 +19,7 @@ public partial class ProductViewWomen : System.Web.UI.Page
     protected void bind()
     {
         List<Products> prodList = new List<Products>();
-        prodList = aProd.getProductAll();
+        prodList = aProd.getProductAllWomen();
         gvProduct.DataSource = prodList;
         gvProduct.DataBind();
     }
