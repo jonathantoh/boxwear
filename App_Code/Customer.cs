@@ -246,6 +246,10 @@ public class Customer
 
         return custDetails;
     }
+    
+
+    //retrieve all data out method
+
 
 
 
