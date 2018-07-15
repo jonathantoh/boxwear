@@ -4,7 +4,19 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+
+    <section id="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb" style="margin-top:20px;padding:80px;font-size:20px;">
+          <li class="main-color-bg">Your Cart <span class="glyphicon glyphicon-shopping-cart" > </span></li>
+            <li class="main-color-bg"> </li>
+          <p>A cart where your loved products live</p>
+        </ol>
+          
+      </div>
+    </section>
+
+    <div class="container">
     <asp:GridView ID="gv_CartView" runat="server" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand">
         <Columns>
             <asp:BoundField DataField="ItemID" HeaderText="Product ID" />
@@ -32,7 +44,8 @@
     <asp:Label ID="lbl_Error" runat="server"></asp:Label>
 
 <br />
-<asp:Button ID="btn_Update" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />
-<asp:Button ID="btn_Clear" runat="server" OnClick="btn_Clear_Click" Text="Clear Cart" />
-
+        <asp:Button ID="btn_Update" class="btn btn-info btn-lg" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />
+        <asp:Button ID="btn_Clear" class="btn btn-info btn-lg" runat="server" OnClick="btn_Clear_Click" Text="Clear Cart" />
+        <asp:Button ID="btn_payment" class="btn btn-info btn-lg" runat="server"  Text="Proceed to Payment" />
+        </div>
 </asp:Content>

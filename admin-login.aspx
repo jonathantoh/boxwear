@@ -88,6 +88,7 @@
             <asp:Button ID="btn_submit" CssClass="btn btn-primary" runat="server" Text="Sign In" OnClick="btn_submit_Click" />
         </div>
         <p><a href="#">Lost your Password?</a></p>
+        <p><a href="login.aspx" target="_blank">Go to Customer site</a></p>
     </div>
         </asp:Panel>
 

@@ -51,9 +51,9 @@
               <a href="index.html" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
-              <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages <span class="badge">12</span></a>
+              <a href="ProductInsert.aspx" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Add Product <span class="badge">12</span></a>
               <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
-              <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
+              <a href="admin-view-users.aspx" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
             </div>
 
             <div class="well">
@@ -80,7 +80,8 @@
               <div class="panel-body">
                 <div class="col-md-3">
                   <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 203</h2>
+                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <asp:Label ID="countUser" runat="server" Text="0"></asp:Label> </h2>
                     <h4>Users</h4>
                   </div>
                 </div>
@@ -111,47 +112,42 @@
                   <h3 class="panel-title">Latest Users</h3>
                 </div>
                 <div class="panel-body">
-                  <table class="table table-striped table-hover">
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Joined</th>
-                      </tr>
-                      <tr>
-                        <td>Jill Smith</td>
-                        <td>jillsmith@gmail.com</td>
-                        <td>Dec 12, 2016</td>
-                      </tr>
-                      <tr>
-                        <td>Eve Jackson</td>
-                        <td>ejackson@yahoo.com</td>
-                        <td>Dec 13, 2016</td>
-                      </tr>
-                      <tr>
-                        <td>John Doe</td>
-                        <td>jdoe@gmail.com</td>
-                        <td>Dec 13, 2016</td>
-                      </tr>
-                      <tr>
-                        <td>Stephanie Landon</td>
-                        <td>landon@yahoo.com</td>
-                        <td>Dec 14, 2016</td>
-                      </tr>
-                      <tr>
-                        <td>Mike Johnson</td>
-                        <td>mjohnson@gmail.com</td>
-                        <td>Dec 15, 2016</td>
-                      </tr>
-                    </table>
+                  <asp:GridView ID="gvUser" runat="server" AutoGenerateColumns="False" DataKeyNames="Email" style="width:100% ;border-collapse:collapse;" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="Email"  HeaderText="Email" />
+                            <asp:BoundField DataField="FName" HeaderText="First Name" />
+                            <asp:BoundField DataField="LName" HeaderText="Last Name" />
+                            <asp:BoundField DataField="Hp" HeaderText="Contact" />
+<%--                            <asp:BoundField DataField="Address" HeaderText="Address" />
+                            <asp:BoundField DataField="Postal" HeaderText="Postal" />
+                            <asp:BoundField DataField="City" HeaderText="City" />--%>
+                           
+                        </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" /> 
+                </asp:GridView>
+                    <br/>
+                <asp:Button ID="viewMore" class="btn btn-default" runat="server" style="float:right; padding:5px;" Text="View More" OnClick="viewMore_Click" />
                 </div>
               </div>
+
+              
           </div>
         </div>
       </div>
     </section>
 
     <footer id="footer">
-      <p>Copyright AdminStrap, &copy; 2017</p>
+      <p>Copyright Jonathan, © 2018</p>
     </footer>
 
     <!-- Modals -->

@@ -137,7 +137,9 @@ public class Products
             prod_Desc = dr["OutfitDesc"].ToString();
             prod_Image = dr["OutfitImage"].ToString();
             prod_Category = dr["OutfitCategory"].ToString();
-            prod_Brand = dr["OutfitBrand"].ToString();
+            //temp
+            prod_Brand = "Adidas";
+            //prod_Brand = dr["OutfitBrand"].ToString();
             unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
             stock_Level = dr["OutfitStatus"].ToString(); //Change in datatype
             stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
@@ -183,7 +185,9 @@ public class Products
             prod_Desc = dr["OutfitDesc"].ToString();
             prod_Image = dr["OutfitImage"].ToString();
             prod_Category = dr["OutfitCategory"].ToString();
-            prod_Brand = dr["OutfitBrand"].ToString();
+            //temp remove it after test
+            prod_Brand = "Adidas";
+            //prod_Brand = dr["OutfitBrand"].ToString();
             unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
             stock_Level = dr["OutfitStatus"].ToString();
             stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());

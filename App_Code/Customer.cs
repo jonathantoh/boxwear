@@ -246,11 +246,71 @@ public class Customer
 
         return custDetails;
     }
-    
+
 
     //retrieve all data out method
+    public List<Customer> getUserAll()
+    {
+        List<Customer> userList = new List<Customer>();
+
+        string queryStr = "SELECT * FROM customer Order By custEmail";
 
 
+        SqlConnection conn = new SqlConnection(_connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        conn.Open();
+        SqlDataReader dr = cmd.ExecuteReader();
+
+
+        //Continue to read the resultsets row by row if not the end
+        while (dr.Read())
+        {
+            int points;
+            FName = dr["custFName"].ToString();
+            LName = dr["custLName"].ToString();
+            Email= dr["custEmail"].ToString();
+            Hp= dr["custContact"].ToString();
+            Address = dr["custAddress"].ToString();
+            Postal = dr["postal"].ToString();
+            City = dr["city"].ToString();
+            Country = dr["country"].ToString();
+            points = 0;
+            //points = int.Parse(dr["rewardPoints"].ToString());
+
+            Customer custDetails = null;
+
+            custDetails = new Customer(FName, LName, Email, Hp, Address, Postal, City, Country, points);
+            userList.Add(custDetails);
+        }
+        conn.Close();
+        dr.Close();
+        dr.Dispose();
+
+        return userList;
+    }
+
+    public int userUpdate(string custEmail, string fName, string lName, string hp, string address, string postal, string city)
+    {
+        string query = "UPDATE customer SET" + " custFName = @custFName," + " custLName = @custLName," + " custContact = @custContact," + " custAddress = @custAddress," + " postal = @postal," + " city = @city" + " WHERE custEmail ='" + custEmail + "'";
+        SqlConnection conn = new SqlConnection(_connStr);
+        SqlCommand cmd = new SqlCommand(query, conn);
+        cmd.Parameters.AddWithValue("@custFName", fName);
+        cmd.Parameters.AddWithValue("@custLName", lName);
+        cmd.Parameters.AddWithValue("@custContact", hp);
+        //cmd.Parameters.AddWithValue("@custPassword", Password.Text);
+
+        cmd.Parameters.AddWithValue("@custAddress", address);
+        cmd.Parameters.AddWithValue("@postal", postal);
+        cmd.Parameters.AddWithValue("@city", city);
+
+        conn.Open();
+        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+
+        conn.Close();
+
+        return nofRow;
+    }//end Update
 
 
     public int userUpdateProfile(string fName, string lName, string hp, string custEmail)
@@ -290,6 +350,24 @@ public class Customer
 
         return nofRow;
     }//end Update
+
+
+    //delete
+    public int UserDelete(string custEmail)
+    {
+        string queryStr = "DELETE FROM Customer WHERE custEmail = '" + custEmail + "'";
+        SqlConnection conn = new SqlConnection(_connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@custEmail", custEmail);
+        conn.Open();
+        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+        conn.Close();
+
+        return nofRow;
+
+
+    }//end Delete
 
 
 
