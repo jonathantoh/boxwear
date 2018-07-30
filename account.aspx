@@ -139,7 +139,8 @@
               </a>
               <a href="account.aspx" class="list-group-item active"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Profile </a>
               <a href="myRewards.aspx" class="list-group-item"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> My Rewards </a>
-              <asp:linkbutton class="list-group-item" runat="server" onclick="btnlogout_Click"><span class="glyphicon">&#xe163;</span> Logout <span class="badge"></span></asp:linkbutton>
+                <a href="settings.aspx" class="list-group-item"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings </a>
+              <asp:linkbutton class="list-group-item" runat="server" onclick="btnlogout_Click"><span class="glyphicon glyphicon-off"></span> Logout <span class="badge"></span></asp:linkbutton>
             </div>
 
             <div class="well">
@@ -167,10 +168,11 @@
                   <div class="swiper-container" style="position: relative;height: 100%;">
                     <div class="swiper-wrapper" >
                       <div class="swiper-slide" >
-                          <h3 style="background-color:#ffd700;color:white;text-align:center">Level 1</h3> 
+                          <div style="padding-top:50px;padding-bottom:50px;" >
+                              <img src="images/boxwear-1.png"  width="auto" height="50px" /></div><h5 style="border-bottom: 6px solid #ff4040;text-align:center;font-family:Helvetica;"><abbr title="From 0 points">Level 1 - Player</abbr></h5>
                           <br /><p><a>> Enjoy Rewards</a></p>
                           <p><a>> My Points in Detail</a></p>
-                          <p>> Only $150 to move up to level 2</p>
+                          <p>> Only 150 points to move up to level 2</p>
                           <p></p>
                           <p style="color:#ffd700;font-size:15px;text-align:center;"><strong>>$1 = 1 point</strong></p>
                           <p><br /></p>
@@ -178,8 +180,10 @@
                       </div>
 
                         <div class="swiper-slide" >
-                          <h3 style="background-color:#fa8072;color:white;text-align:center"">Level 2</h3> 
+                          <div style="padding-top:50px;padding-bottom:50px;" >
+                              <img src="images/boxwear-2.png"  width="auto" height="50px" /></div><h5 style="border-bottom: 6px solid #daa520;text-align:center;font-family:Helvetica;"><abbr title="From 150 points">Level 2 - Confirmed</abbr></h5>
                           <br /><p><a>> Enjoy Rewards</a></p>
+                            <p>> Only 150 points to move up to level 2</p>
                           <p><a>> My Points in Detail</a></p>
                           <p>>All the Rewards from LEVEL 1, plus:</p>
                             <ul>
@@ -194,10 +198,11 @@
                       </div>
 
                         <div class="swiper-slide" >
-                          <h3 style="background-color: #008000;color:white;text-align:center"">Level 3</h3> 
+                          <div style="padding-top:50px;padding-bottom:50px;" >
+                              <img src="images/boxwear-3.png"  width="auto" height="50px" /></div><h5 style="border-bottom: 6px solid #c0c0c0;text-align:center;font-family:Helvetica;"><abbr title="From 400 points">Level 3 - Advanced</abbr></h5>
                           <br /><p><a>> Enjoy Rewards</a></p>
                           <p><a>> My Points in Detail</a></p>
-                          <p>> Only $150 to move up to level 2</p>
+                          <p>> Only 400 points to move up to level 2</p>
                           <p></p>
                           <p>>$1 = 1 point</p>
                           <p><br /></p>
@@ -206,10 +211,11 @@
 
 
                         <div class="swiper-slide" >
-                          <h3 style="background-color: #003366; color:white;text-align:center"">Level 4</h3> 
+                          <div style="padding-top:50px;padding-bottom:50px;" >
+                              <img src="images/boxwear-4.png"  width="auto" height="50px" /></div><h5 style="border-bottom: 6px solid #000000;text-align:center;font-family:Helvetica;"><abbr title="From 750 points">Level 4 - Legend</abbr></h5>
                           <br /><p><a>> Enjoy Rewards</a></p>
                           <p><a>> My Points in Detail</a></p>
-                          <p>> Only $150 to move up to level 2</p>
+                          <p>> Only 750 points to move up to level 2</p>
                           <p></p>
                           <p>>$1 = 1 point</p>
                           <p><br /></p>
@@ -262,7 +268,7 @@
                           <asp:Label ID="contacttxt" runat="server" Text="contacttxt"></asp:Label>
                       </h5>
                       <h5>
-                          <asp:Button runat="server" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" Text="Edit"/>
+                          <a id="Button1" class="btn btn-primary btn-lg" href="updateProfile.aspx" runat="server" >Edit</a>
                       </h5>     
                   </div>
                 </div>
@@ -275,14 +281,45 @@
                     <h5><asp:Label ID="citytxt" runat="server" Text="citytxt"></asp:Label></h5>
                     <h5><asp:Label ID="countrytxt" runat="server" Text="countrytxt"></asp:Label></h5>
                        <h5>
-                          <asp:Button runat="server" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2" Text="Edit"/>
+                          <a id="A1" class="btn btn-primary btn-lg" href="updateProfile.aspx" runat="server" >Edit</a>
                       </h5>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="well dash-box">
                     <h3><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Recent Orders</h3>
-                    <h4>Posts</h4>
+
+
+                    <%-- gridview orders --%>
+                      
+                      
+                      <asp:GridView ID="gvOrders" OnSelectedIndexChanged="gvOrders_SelectedIndexChanged" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" style="width:100% ;border-collapse:collapse;" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="OrderID"  HeaderText="Order ID" />
+                            <asp:BoundField DataField="OrderStatus" HeaderText="Status" />
+                            <asp:BoundField DataField="OrderDate" HeaderText="Date" />
+                            
+<%--                            <asp:BoundField DataField="Address" HeaderText="Address" />
+                            <asp:BoundField DataField="Postal" HeaderText="Postal" />
+                            <asp:BoundField DataField="City" HeaderText="City" />--%>
+                           
+                            <asp:CommandField ShowSelectButton="True" SelectText="View Order" ControlStyle-ForeColor="Blue" />
+                        </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" /> 
+                </asp:GridView>
+
+
+
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -308,95 +345,7 @@
               </section>
         </div>
 
-        <!-- Modal 1-->
-    <div class="modal fade" data-backdrop="false" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Update Account Information</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="signup-form">
-                <div class="form-group">
-			    <div class="row">
-				    <div class="col-xs-6"><asp:TextBox ID="Fname" class="form-control" name="first_name" placeholder="First Name" required="required" runat="server"></asp:TextBox></div>
-				    <div class="col-xs-6"><asp:TextBox ID="Lname" class="form-control" name="last_name" placeholder="Last Name" required="required" runat="server"></asp:TextBox></div>
-			    </div>        	
-            </div>
-            <div class="form-group">
-                <asp:TextBox class="form-control" name="mobile" placeholder="Mobile" required="required" ID="MobileNumber" runat="server"></asp:TextBox>
-            </div>
-            <div class="form-group">
-
-            </div>
-		    <%--<div class="form-group">
-                <asp:TextBox runat="server" class="form-control" name="password" placeholder="Password" required="required" ID="Password" TextMode="Password"></asp:TextBox>
-            </div>
-		    <div class="form-group">
-                <asp:TextBox runat="server" class="form-control" name="confirm_password" placeholder="Confirm password" required="required" ID="ConfirmPassword" TextMode="Password"></asp:TextBox>
-                <asp:CompareValidator id="comparePasswords" 
-                  runat="server"
-                  ControlToCompare="Password"
-                  ControlToValidate="ConfirmPassword"
-                  ErrorMessage="Your passwords do not match up!"
-                  Display="Dynamic" />
-            </div>--%>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <asp:Button ID="updateBtn" onclick="updateProfileBtn_Click" Class="btn btn-primary" UseSubmitBehavior="false" runat="server" Text="Save changes" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-            <!-- Modal 2 -->
-    <div class="modal fade" data-backdrop="false" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle2">Update Address Information</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="signup-form">
-                
-            <div class="form-group">
-                <asp:TextBox class="form-control" name="address" placeholder="Address" required="required" ID="address" runat="server"></asp:TextBox>
-            </div>
-                <div class="form-group">
-			    <div class="row">
-				    <div class="col-xs-6"><asp:TextBox ID="postal" class="form-control" name="postal" placeholder="Postal Code" required="required" runat="server"></asp:TextBox></div>
-				    <div class="col-xs-6"><asp:TextBox ID="city" class="form-control" name="city" placeholder="City" required="required" runat="server"></asp:TextBox></div>
-			    </div>        	
-                </div>
-
-            <div class="form-group">
-                <asp:DropDownList ID="ddl_country" runat="server" class="form-control">
-                      <asp:ListItem>Singapore</asp:ListItem>
-                  </asp:DropDownList>
-                </div>
-
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-              <asp:Button ID="updateAddressBtn" OnClick="updateAddressBtn_Click" Class="btn btn-primary" UseSubmitBehavior="false" data-dismiss="modal" runat="server" Text="Save changes" />
-          </div>
-        </div>
-      </div>
-    </div>
+        
 
     
 
