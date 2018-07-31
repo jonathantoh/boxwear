@@ -4,23 +4,77 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 public partial class ProductViewDlist : System.Web.UI.Page
 {
+    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BoxWearDB"].ToString());
     Products aProd = new Products();
+    Products prodItem = new Products();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            bind();
+            bind2();
+
         }
     }
-    protected void bind()
+    protected void bind() //bind by ID
     {
+        string txtID = tb_InputID.Text;
+        List<Products> prodList = new List<Products>();
+        prodList = aProd.getProductAllByProductID(txtID);
+        gvProduct.DataSource = prodList;
+        gvProduct.DataBind();
+    }
+
+    protected void bind2() //bind all products
+    {
+
         List<Products> prodList = new List<Products>();
         prodList = aProd.getProductAll();
         gvProduct.DataSource = prodList;
         gvProduct.DataBind();
+    }
+
+    protected void bind3()
+    {
+        /*string txtName = tb_Name.Text;
+        string cmdstr = "Select * from Outfits";
+        SqlCommand cmd = new SqlCommand(cmdstr, conn);
+        SqlDataAdapter adp = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        conn.Open();
+        adp.Fill(ds); */
+
+
+        /****  string prodQuantity = DropDownList1.SelectedItem.Text;
+
+          if (prodQuantity == "Low")
+          {
+
+              List<Products> prodList = new List<Products>();
+              prodList = aProd.getProductAllByProductQuantity(prodQuantity);
+              gvProduct.DataSource = prodList;
+              gvProduct.DataBind();
+          }****/
+        string quantity = DropDownList1.SelectedItem.Text;
+        if (quantity == "Low")
+        {
+            List<Products> prodList = new List<Products>();
+            prodList = aProd.getProductByQuantityLow();
+            gvProduct.DataSource = prodList;
+            gvProduct.DataBind();
+        }
+        else
+        {
+            List<Products> prodList = new List<Products>();
+            prodList = aProd.getProductByQuantityHigh();
+            gvProduct.DataSource = prodList;
+            gvProduct.DataBind();
+        }
     }
 
     protected void gvProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,7 +89,7 @@ public partial class ProductViewDlist : System.Web.UI.Page
         string queryString = "?ProdID=" + prodID;
         //Redirect to next page, with the Product id added to the URL,
         //e.g. ProductDetails.aspx?ProdID = 1
-        Response.Redirect("MenProducts2.aspx?ProdID=" + prodID);
+        Response.Redirect("SelectedProduct.aspx?ProdID=" + prodID);
         //Response.Redirect("MenProducts2.aspx" + prodID);
     }
 
@@ -64,13 +118,13 @@ public partial class ProductViewDlist : System.Web.UI.Page
     protected void gvProduct_RowEditing(object sender, GridViewEditEventArgs e)
     {
         gvProduct.EditIndex = e.NewEditIndex;
-        bind();
+        bind2();
     }
 
     protected void gvProduct_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         gvProduct.EditIndex = -1;
-        bind();
+        bind2();
     }
 
     protected void gvProduct_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -93,6 +147,44 @@ public partial class ProductViewDlist : System.Web.UI.Page
             Response.Write("<script>alert('Product NOT updated');</script>");
         }
         gvProduct.EditIndex = -1;
+        bind2();
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+
         bind();
+
+        //string txtID = tb_InputID.Text;
+        //string ProdIDs = txtID;
+        //string connStr = ConfigurationManager.ConnectionStrings["ProductDBContext"].ConnectionString;
+        //SqlConnection conn = new SqlConnection(connStr);
+        //conn.Open();
+        //SqlCommand cmd = new SqlCommand();
+        ////string queryStr = "select * from Outfits where OutfitID like '% - M%'+ @Product_ID";
+        ////string queryStr = "SELECT * FROM Outfits where OutfitID LIKE '% - M%' Order By OutfitName";
+        ////string queryStr = "select * from Outfits where OutfitID ='" + @OutfitID + "'";
+        ////SqlCommand cmd = new SqlCommand(queryStr, conn);
+        //string queryStr = "SELECT * FROM Outfits WHERE OutfitID='" + ProdIDs + "'";
+        //cmd.CommandText = queryStr;
+        //cmd.Connection = conn;
+        //cmd.Parameters.AddWithValue("OutfitID", txtID   );
+        //DataTable dt = new DataTable();
+        //SqlDataAdapter sda = new SqlDataAdapter(cmd);
+        //sda.Fill(dt);
+        //gvProduct.DataSource = dt;
+        //gvProduct.DataBind();
+
+
+    }
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        bind3();
     }
 }

@@ -39,6 +39,27 @@ public class ShoppingCartItem : IEquatable<ShoppingCartItem>
         set { _ItemPrice = value; }
     }
 
+    private string _ItemSize;
+    public string Product_Size
+    {
+        get { return _ItemSize; }
+        set { _ItemSize = value; }
+    }
+
+    private string _ItemSizeCust;
+    public string Product_SizeCust
+    {
+        get { return _ItemSizeCust; }
+        set { _ItemSizeCust = value; }
+    }
+
+    private string _ItemImage;
+    public string Product_Image
+    {
+        get { return _ItemImage; }
+        set { _ItemImage = value; }
+    }
+
     public decimal TotalPrice
     {
         get { return Product_Price * Quantity; }
@@ -54,16 +75,21 @@ public class ShoppingCartItem : IEquatable<ShoppingCartItem>
         this.ItemID = productID;
         this.Product_Name = prod.Product_Name;
         this.Product_Desc = prod.Product_Desc;
-        this.Product_Price = prod.Product_Price; ;
-
+        this.Product_Price = prod.Product_Price;
+        this.Product_Size = prod.Product_Size;
+        this.Product_SizeCust = prod.Product_SizeCust;
+        this.Product_Image = prod.Product_Image;
     }
 
-    public ShoppingCartItem(string productID, string productName, string productDesc, decimal productPrice)
+    public ShoppingCartItem(string productID, string productName, string productDesc, decimal productPrice, string productSize, string productSizeCust, string productImage)
     {
         this.ItemID = productID;
         this.Product_Name = productName;
         this.Product_Desc = productDesc;
         this.Product_Price = productPrice;
+        this.Product_Size = productSize;
+        this.Product_SizeCust = productSizeCust;
+        this.Product_Image = productImage;
 
     }
 
