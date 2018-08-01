@@ -43,6 +43,26 @@ public partial class WomenProduct2 : System.Web.UI.Page
         DataList1.DataBind();
     }
 
+    protected void bind2()
+    {
+        string txtName = tb_Name.Text;
+        string cmdstr = "Select * from Outfits";
+        SqlCommand cmd = new SqlCommand(cmdstr, conn);
+        SqlDataAdapter adp = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        conn.Open();
+        adp.Fill(ds);
+
+
+        List<Products> prodList = new List<Products>();
+
+        prodList = prodItem.getProductAllByProductName(txtName);
+
+        DataList1.DataSource = prodList;
+        DataList1.DataBind();
+    }
+
+
     protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
     {
         DataList1.SelectedIndex = e.Item.ItemIndex;
@@ -59,5 +79,10 @@ public partial class WomenProduct2 : System.Web.UI.Page
         //e.g. ProductDetails.aspx?ProdID = 1
         //   Response.Redirect("MenProducts.aspx?ProdID=" + prodID);
 
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        bind2();
     }
 }

@@ -9,11 +9,42 @@
         font-size: large;
         text-decoration: underline;
     }
-</style>
+        .auto-style4 {
+            font-size: large;
+        }
+        .auto-style8 {
+            height: 36px;
+        }
+        .auto-style14 {
+            width: 350px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <span class="auto-style3"><strong>Women Products
-    </strong></span>
+     <strong>    <span class="auto-style3">Women Product<br />
+    </span>
+    
+    </strong>
+    <table class="auto-style4">
+            <tr>
+                <td class="auto-style14">Product Name:</td>
+                <td>
+                    <asp:TextBox ID="tb_Name" runat="server" CssClass="auto-style5"></asp:TextBox>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="auto-style14"></td>
+                <td class="auto-style8">
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style14">&nbsp;</td>
+                <td>
+                    <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" style="height: 29px" Text="Search" />
+                </td>
+            </tr>
+        </table>
     <asp:DataList ID="DataList1" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" OnItemCommand="DataList1_ItemCommand">
         <ItemTemplate>
             <table class="auto-style2">

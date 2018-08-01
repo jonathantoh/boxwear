@@ -31,6 +31,7 @@
                     <h4>Product Description:
                 <asp:Label ID="lbl_ProdDesc" runat="server"></asp:Label>
                     </h4>
+                    <p>&nbsp;</p>
                 </td>
             </tr>
         </table>
@@ -103,5 +104,6 @@
         
           
     </div>
+
 </asp:Content>
 

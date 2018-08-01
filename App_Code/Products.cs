@@ -290,12 +290,12 @@ public class Products
         List<Products> prodList = new List<Products>();
 
 
-        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level, prod_Size;
+        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, stock_Level, prod_Size;
         decimal unit_Price;
         int stock_Quantity;
 
 
-        string queryStr = "SELECT * FROM Outfits WHERE OutfitName='" + productName + "'";
+        string queryStr = "SELECT * FROM Outfits WHERE OutfitID='" + productName + "'";
 
 
         SqlConnection conn = new SqlConnection(connStr);
@@ -312,13 +312,13 @@ public class Products
             prod_Desc = dr["OutfitDesc"].ToString();
             prod_Image = dr["OutfitImage"].ToString();
             prod_Category = dr["OutfitCategory"].ToString();
-            prod_Brand = dr["OutfitBrand"].ToString();
+            //prod_Brand = dr["OutfitBrand"].ToString();
             unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
             stock_Level = dr["OutfitStatus"].ToString();
             stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
             prod_Size = dr["OutfitSize"].ToString();
 
-            Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
+            Products a = new Products(prod_ID, prod_Name, prod_Desc, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
             prodList.Add(a);
         }
         conn.Close();
@@ -558,7 +558,7 @@ public class Products
         //cmd.Parameters.AddWithValue("@Product_Brand", this.Product_Brand);
         cmd.Parameters.AddWithValue("@Product_Quantity", this.Product_Quantity);
         cmd.Parameters.AddWithValue("@Product_Price", this.Product_Price);
-        cmd.Parameters.AddWithValue("@Product_Image", this.Product_Image);
+        cmd.Parameters.AddWithValue("@Product_Image", "Images/" + this.Product_Image);
         cmd.Parameters.AddWithValue("@Product_Category", this.Product_Category);
         cmd.Parameters.AddWithValue("@Product_Status", this.Product_Status);
         cmd.Parameters.AddWithValue("@Product_Size", this.Product_Size);

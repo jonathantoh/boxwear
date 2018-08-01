@@ -60,8 +60,8 @@
             <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
             <asp:BoundField DataField="Product_Quantity" HeaderText="Product Quantity" />
             <asp:BoundField DataField="Product_Price" HeaderText="Unit Price" />
-            <asp:ImageField DataImageUrlField="Product_Image" ReadOnly="true" ControlStyle-Width="100" ControlStyle-Height = "100" HeaderText="Image">
-<ControlStyle Height="50%" Width="100%"></ControlStyle>
+            <asp:ImageField DataImageUrlField="Product_Image" ReadOnly="true" ControlStyle-Width="200" ControlStyle-Height = "100" HeaderText="Image">
+
             </asp:ImageField>
             <asp:CommandField ShowSelectButton="True" ShowDeleteButton="True" ShowEditButton="True" />
         </Columns>

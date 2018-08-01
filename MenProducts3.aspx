@@ -16,15 +16,15 @@
             font-size: large;
         }
         .auto-style5 {
-            margin-left: 212;
+            margin-left: 1px;
         }
         .auto-style6 {
             font-size: large;
-            width: 334px;
+            width: 350px;
         }
         .auto-style7 {
             font-size: large;
-            width: 334px;
+            width: 350px;
             height: 11px;
         }
         .auto-style8 {
