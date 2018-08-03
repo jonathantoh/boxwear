@@ -10,7 +10,7 @@ public partial class suitableSize : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         size_lbl.Text = Session["size"].ToString();
-        tight_lbl.Text = Session["tight"].ToString();
-        loose_lbl.Text = Session["loose"].ToString();
+        bottom_lbl.Text = Session["bot"].ToString();
+        foot_lbl.Text = Session["foot"].ToString();
     }
 }

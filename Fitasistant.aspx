@@ -155,12 +155,7 @@ hr {
       <label for="Weight"><b>Weight</b></label>
       <asp:TextBox ID="tb_weight" runat="server" placeholder="Enter Weight" ></asp:TextBox>
 
-      
-
-      <label for="topsize"><b>TopSize</b></label>
-      <asp:TextBox ID="tb_topsize" runat="server" placeholder="Enter TopSize" ></asp:TextBox>  
-        
-        
+  
        <label for="bottomsize"><b>BottomSize</b></label>
       <asp:TextBox ID="tb_bottomSize" runat="server" placeholder="Enter BottomSize" ></asp:TextBox>       
 
@@ -202,38 +197,20 @@ hr {
 
 
 
-<%--<script>
-    // Get the modal
-    var modal = document.getElementById('id01');
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>--%>
+<script>
+    
+</script>
    
     <br />
     <br />
-    <%--<br />--%>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    
     <asp:Label ID="suitableSize" runat="server"></asp:Label>
     <br/>
     <br/>
-    <asp:Label ID="Tsize" runat="server" Text=""></asp:Label>
+    <asp:Label ID="Bsize" runat="server" ></asp:Label>
     <br/>
     <br/>
-    <asp:Label ID="Bsize" runat="server" Text=""></asp:Label>
-    <br/>
-    <br/>
-    <asp:Label ID="Flength" runat="server" Text=""></asp:Label>
+    <asp:Label ID="Flength" runat="server" ></asp:Label>
 
 
 
