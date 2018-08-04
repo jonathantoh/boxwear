@@ -135,9 +135,11 @@ public partial class ProductViewDlist : System.Web.UI.Page
         string id = gvProduct.DataKeys[e.RowIndex].Value.ToString();
         string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
         string tname = ((TextBox)row.Cells[1].Controls[0]).Text;
-        string tprice = ((TextBox)row.Cells[2].Controls[0]).Text;
+        string tquantity = ((TextBox)row.Cells[2].Controls[0]).Text; //
+        string tprice = ((TextBox)row.Cells[3].Controls[0]).Text;
 
-        result = prod.ProductUpdate(tid, tname, decimal.Parse(tprice));
+
+        result = prod.ProductUpdate(tid, tname, decimal.Parse(tquantity), decimal.Parse(tprice));  //decimal.Parse(tquantity),
         if (result > 0)
         {
             Response.Write("<script>alert('Product updated successfully');</script>");
@@ -186,5 +188,10 @@ public partial class ProductViewDlist : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         bind3();
+    }
+
+    protected void btn_retrieveAll_Click(object sender, EventArgs e)
+    {
+        bind2();
     }
 }

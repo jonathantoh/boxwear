@@ -284,7 +284,7 @@ public class Products
 
         return prodList;
     }
-
+   
     public List<Products> getProductAllByProductName(string productName)
     {
         List<Products> prodList = new List<Products>();
@@ -295,7 +295,7 @@ public class Products
         int stock_Quantity;
 
 
-        string queryStr = "SELECT * FROM Outfits WHERE OutfitID='" + productName + "'";
+        string queryStr = "SELECT * FROM Outfits WHERE OutfitName='" + productName + "'";
 
 
         SqlConnection conn = new SqlConnection(connStr);
@@ -326,7 +326,7 @@ public class Products
         dr.Dispose();
 
         return prodList;
-    }
+    } 
 
     /** public List<Products> getProductAllByProductQuantity(string productQuantity)
      {
@@ -584,17 +584,19 @@ public class Products
         return nofRow;
     } //end Delete
 
-    public int ProductUpdate(string pId, string pName, decimal pUnitPrice)
+    public int ProductUpdate(string pId, string pName, decimal pQuantity, decimal pUnitPrice)
     {
         string queryStr = "UPDATE Outfits SET" +
         //" Product_ID = @productID, " +
         " OutfitName = @productName, " +
+        " OutfitQuantity = @productQuantity, " +   //
         " OutfitPrice = @unitPrice " +
         " WHERE OutfitID = @productID";
         SqlConnection conn = new SqlConnection(connStr);
         SqlCommand cmd = new SqlCommand(queryStr, conn);
         cmd.Parameters.AddWithValue("@productID", pId);
         cmd.Parameters.AddWithValue("@productName", pName);
+        cmd.Parameters.AddWithValue("@productQuantity", pQuantity); //
         cmd.Parameters.AddWithValue("@unitPrice", pUnitPrice);
         conn.Open();
         int nofRow = 0;
