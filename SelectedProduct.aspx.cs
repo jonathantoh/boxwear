@@ -34,4 +34,9 @@ public partial class SelectedProduct : System.Web.UI.Page
         string iProductID = prod.Product_ID.ToString();
         ShoppingCart.Instance.AddItem(iProductID, prod);
     }
+
+    protected void Btn_FitAssist_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Fitasistant.aspx");
+    }
 }

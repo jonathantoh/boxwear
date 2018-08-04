@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
 
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%--<link href="bootstrap/css/bootstrap.css" rel="stylesheet" />--%>
+  <%--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
     <style type="text/css">
         .auto-style2 {
             width: 100%;
@@ -35,7 +35,7 @@
                 </td>
             </tr>
         </table>
-    
+    <div class="container">
     <div class="col-md-8" style="float:left;">
         <div class="container" style="width: 50%;">
             <h2>Box Contents</h2>
@@ -97,13 +97,13 @@
         <br />            
         <br />
 
-        <asp:LinkButton ID="Btn_FitAssist" runat="server">Check out the Fit Assistant!</asp:LinkButton>
+        <asp:LinkButton ID="Btn_FitAssist" runat="server" OnClick="Btn_FitAssist_Click">Check out the Fit Assistant!</asp:LinkButton>
 
         <br />
         <asp:Button ID="Btn_Add" CssClass="btn btn-default btn-lg" runat="server" OnClick="Btn_Add_Click"  Height="47px" Width="155px" Text="Add To Cart"></asp:Button> 
         
           
     </div>
-
+</div>
 </asp:Content>
 
