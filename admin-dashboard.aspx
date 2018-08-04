@@ -51,9 +51,11 @@
               <a href="index.html" class="list-group-item active main-color-bg">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
               </a>
+                <a href="ProductViewDlist.aspx" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> View Products <span class="badge">12</span></a>
               <a href="ProductInsert.aspx" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Add Product <span class="badge">12</span></a>
-              <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">33</span></a>
+              <a href="admin-view-orders.aspx" class="list-group-item"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Orders <span class="badge">33</span></a>
               <a href="admin-view-users.aspx" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
+                <a href="admin-feedback.aspx" class="list-group-item"><span class="	glyphicon glyphicon-comment" aria-hidden="true"></span> Feedback <span class="badge">203</span></a>
             </div>
 
             <div class="well">
@@ -87,8 +89,10 @@
                 </div>
                 <div class="col-md-3">
                   <div class="well dash-box">
-                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 12</h2>
-                    <h4>Pages</h4>
+                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 
+                        <asp:Label ID="countOrder" runat="server" Text="0"></asp:Label>
+                    </h2>
+                    <h4>Orders</h4>
                   </div>
                 </div>
                 <div class="col-md-3">

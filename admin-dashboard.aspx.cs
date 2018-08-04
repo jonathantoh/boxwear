@@ -28,6 +28,7 @@ public partial class admin_dashboard : System.Web.UI.Page
         }
 
         countUsers();
+        countOrders();
     }
 
     protected void btnlogout_Click(object sender, EventArgs e)
@@ -64,6 +65,22 @@ public partial class admin_dashboard : System.Web.UI.Page
         
 
         countUser.Text = output.ToString();
+
+    }
+
+    public void countOrders()
+    {
+
+        SqlConnection conn = new SqlConnection(_connStr);
+        conn.Open();
+        string query = "SELECT count(*) FROM orders";
+
+        SqlCommand cmd = new SqlCommand(query, conn);
+        string output = cmd.ExecuteScalar().ToString();
+
+
+
+        countOrder.Text = output.ToString();
 
     }
 }
