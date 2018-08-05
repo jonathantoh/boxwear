@@ -504,6 +504,94 @@ public class Products
         return prodList;
     }
 
+    public List<Products> getProductStatusUpdate()
+    {
+        List<Products> prodList = new List<Products>();
+
+
+        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level, prod_Size;
+        decimal unit_Price;
+        int stock_Quantity;
+
+
+        string queryStr = "update Outfits set OutfitStatus ='Unavailable' where OutfitQuantity<=0";
+
+
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        //cmd.Parameters.AddWithValue("@ProdID");
+        conn.Open();
+        SqlDataReader dr = cmd.ExecuteReader();
+
+
+        //Continue to read the resultsets row by row if not the end
+        while (dr.Read())
+        {
+            prod_ID = dr["OutfitID"].ToString();
+            prod_Name = dr["OutfitName"].ToString();
+            prod_Desc = dr["OutfitDesc"].ToString();
+            prod_Image = dr["OutfitImage"].ToString();
+            prod_Category = dr["OutfitCategory"].ToString();
+            prod_Brand = dr["OutfitBrand"].ToString();
+            unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
+            stock_Level = dr["OutfitStatus"].ToString();
+            stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
+            prod_Size = dr["OutfitSize"].ToString();
+
+            Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
+            prodList.Add(a);
+        }
+        conn.Close();
+        dr.Close();
+        dr.Dispose();
+
+        return prodList;
+    }
+
+    public List<Products> getProductStatusUpdate2()
+    {
+        List<Products> prodList = new List<Products>();
+
+
+        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level, prod_Size;
+        decimal unit_Price;
+        int stock_Quantity;
+
+
+        string queryStr = "update Outfits set OutfitStatus ='Available' where OutfitQuantity>=1";
+
+
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        //cmd.Parameters.AddWithValue("@ProdID");
+        conn.Open();
+        SqlDataReader dr = cmd.ExecuteReader();
+
+
+        //Continue to read the resultsets row by row if not the end
+        while (dr.Read())
+        {
+            prod_ID = dr["OutfitID"].ToString();
+            prod_Name = dr["OutfitName"].ToString();
+            prod_Desc = dr["OutfitDesc"].ToString();
+            prod_Image = dr["OutfitImage"].ToString();
+            prod_Category = dr["OutfitCategory"].ToString();
+            prod_Brand = dr["OutfitBrand"].ToString();
+            unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
+            stock_Level = dr["OutfitStatus"].ToString();
+            stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
+            prod_Size = dr["OutfitSize"].ToString();
+
+            Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
+            prodList.Add(a);
+        }
+        conn.Close();
+        dr.Close();
+        dr.Dispose();
+
+        return prodList;
+    }
+
     public List<Products> getProductMen()
     {
         List<Products> prodList = new List<Products>();
@@ -632,20 +720,29 @@ public class Products
         return nofRow;
     } //end Delete
 
-    public int ProductUpdate(string pId, string pName, decimal pQuantity, decimal pUnitPrice)
+    public int ProductUpdate(string pId, string pName, string pDesc, string pCategory, decimal pQuantity, decimal pUnitPrice, string pStatus, string pSize) //added Desc,Category, status and size
     {
         string queryStr = "UPDATE Outfits SET" +
         //" Product_ID = @productID, " +
         " OutfitName = @productName, " +
+        " OutfitDesc = @productDesc,  " +
+        " OutfitCategory = @productCategory,  " +
         " OutfitQuantity = @productQuantity, " +   //
-        " OutfitPrice = @unitPrice " +
+        " OutfitPrice = @unitPrice, " +
+        " OutfitStatus = @productStatus,  " +
+        " OutfitSize = @productSize  " +
         " WHERE OutfitID = @productID";
         SqlConnection conn = new SqlConnection(connStr);
         SqlCommand cmd = new SqlCommand(queryStr, conn);
         cmd.Parameters.AddWithValue("@productID", pId);
         cmd.Parameters.AddWithValue("@productName", pName);
+        cmd.Parameters.AddWithValue("@productDesc", pDesc);
+        cmd.Parameters.AddWithValue("@productCategory", pCategory);
+     //   cmd.Parameters.AddWithValue("@produc", pName);
         cmd.Parameters.AddWithValue("@productQuantity", pQuantity); //
         cmd.Parameters.AddWithValue("@unitPrice", pUnitPrice);
+        cmd.Parameters.AddWithValue("@productStatus", pStatus);
+        cmd.Parameters.AddWithValue("@productSize", pSize);
         conn.Open();
         int nofRow = 0;
         nofRow = cmd.ExecuteNonQuery();

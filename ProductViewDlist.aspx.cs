@@ -13,14 +13,41 @@ public partial class ProductViewDlist : System.Web.UI.Page
     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BoxWearDB"].ToString());
     Products aProd = new Products();
     Products prodItem = new Products();
+    Products prod = null;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //  statusqty();
+        List<Products> prodList = new List<Products>();
+        prodList = aProd.getProductStatusUpdate();
         if (!IsPostBack)
         {
+           
             bind2();
 
         }
     }
+
+    protected void statusqty()
+    {
+       // int stockqty = prod.Product_Quantity;
+       // if (stockqty <= 0)
+       // {
+            List<Products> prodList = new List<Products>();
+            prodList = aProd.getProductStatusUpdate();
+            gvProduct.DataSource = prodList;
+            gvProduct.DataBind();
+      //  }
+      //  else
+      //  {
+        //    List<Products> prodList = new List<Products>();
+        //    prodList = aProd.getProductStatusUpdate2();
+        //    gvProduct.DataSource = prodList;
+        //    gvProduct.DataBind();
+        //}
+
+        
+    }
+
     protected void bind() //bind by ID
     {
         string txtID = tb_InputID.Text;
@@ -35,31 +62,14 @@ public partial class ProductViewDlist : System.Web.UI.Page
 
         List<Products> prodList = new List<Products>();
         prodList = aProd.getProductAll();
+        
         gvProduct.DataSource = prodList;
         gvProduct.DataBind();
     }
 
     protected void bind3()
     {
-        /*string txtName = tb_Name.Text;
-        string cmdstr = "Select * from Outfits";
-        SqlCommand cmd = new SqlCommand(cmdstr, conn);
-        SqlDataAdapter adp = new SqlDataAdapter(cmd);
-        DataSet ds = new DataSet();
-        conn.Open();
-        adp.Fill(ds); */
-
-
-        /****  string prodQuantity = DropDownList1.SelectedItem.Text;
-
-          if (prodQuantity == "Low")
-          {
-
-              List<Products> prodList = new List<Products>();
-              prodList = aProd.getProductAllByProductQuantity(prodQuantity);
-              gvProduct.DataSource = prodList;
-              gvProduct.DataBind();
-          }****/
+        
         string quantity = DropDownList1.SelectedItem.Text;
         if (quantity == "Low")
         {
@@ -135,18 +145,22 @@ public partial class ProductViewDlist : System.Web.UI.Page
         string id = gvProduct.DataKeys[e.RowIndex].Value.ToString();
         string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
         string tname = ((TextBox)row.Cells[1].Controls[0]).Text;
-        string tquantity = ((TextBox)row.Cells[2].Controls[0]).Text; //
-        string tprice = ((TextBox)row.Cells[3].Controls[0]).Text;
+        string tdesc = ((TextBox)row.Cells[2].Controls[0]).Text;
+        string tcategory = ((TextBox)row.Cells[3].Controls[0]).Text;
+        string tquantity = ((TextBox)row.Cells[4].Controls[0]).Text; //
+        string tprice = ((TextBox)row.Cells[5].Controls[0]).Text;
+        string tstatus = ((TextBox)row.Cells[6].Controls[0]).Text;
+        string tsize = ((TextBox)row.Cells[7].Controls[0]).Text;
 
 
-        result = prod.ProductUpdate(tid, tname, decimal.Parse(tquantity), decimal.Parse(tprice));  //decimal.Parse(tquantity),
+        result = prod.ProductUpdate(tid, tname, tdesc, tcategory, decimal.Parse(tquantity), decimal.Parse(tprice), tstatus, tsize);  //decimal.Parse(tquantity),
         if (result > 0)
         {
             Response.Write("<script>alert('Product updated successfully');</script>");
         }
         else
         {
-            Response.Write("<script>alert('Product NOT updated');</script>");
+            Response.Write("<script>alert('Product NOT updated. ID cannot be changed!');</script>");
         }
         gvProduct.EditIndex = -1;
         bind2();
