@@ -81,17 +81,13 @@
     </div>
    <br />
 
-    <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProduct_SelectedIndexChanged" DataKeyNames="Product_ID" OnRowDeleting="gvProduct_RowDeleting" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowEditing="gvProduct_RowEditing" OnRowUpdating="gvProduct_RowUpdating" Width="1011px" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
+    <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProduct_SelectedIndexChanged" DataKeyNames="Product_ID" OnRowDeleting="gvProduct_RowDeleting" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowEditing="gvProduct_RowEditing" OnRowUpdating="gvProduct_RowUpdating" Width="763px" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="Product_ID" HeaderText="Product ID" />
             <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
-            <asp:BoundField DataField="Product_Desc" HeaderText="Product Description" />
-            <asp:BoundField DataField="Product_Category" HeaderText="Product Category" />
             <asp:BoundField DataField="Product_Quantity" HeaderText="Product Quantity" />
             <asp:BoundField DataField="Product_Price" HeaderText="Unit Price" />
-            <asp:BoundField DataField="Product_Status" HeaderText="Product Status" />
-            <asp:BoundField DataField="Product_Size" HeaderText="Product Size" />
             <asp:ImageField DataImageUrlField="Product_Image" ReadOnly="true" ControlStyle-Width="300" ControlStyle-Height = "200" HeaderText="Image">
 
 <ControlStyle Height="200px" Width="300px"></ControlStyle>

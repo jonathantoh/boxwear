@@ -19,7 +19,7 @@ public partial class admin_feedback_details : System.Web.UI.Page
         lbl_Email.Text = feedback.feedbackEmail;
         lbl_Message.Text = feedback.feedbackMessage;
         lbl_OrderNo.Text = feedback.feedbackOrderNo;
-        lbl_Id.Text = Id.ToString();
+        lbl_Id.Text = feedback.feedbackId.ToString();
 
     }
 }
