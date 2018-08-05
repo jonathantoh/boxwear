@@ -17,6 +17,7 @@ public partial class SelectedProduct : System.Web.UI.Page
         prod = aProd.getProduct(prodID);
 
         //Diplay product details on webform
+        lbl_Cat.Text = prod.Product_Category;
         lbl_ProdName.Text = prod.Product_Name;
         lbl_ProdID.Text = prod.Product_ID;
         lbl_ProdDesc.Text = prod.Product_Desc;
@@ -26,6 +27,21 @@ public partial class SelectedProduct : System.Web.UI.Page
         // Store the value in invisible fields
         lbl_Price.Text = prod.Product_Price.ToString();
 
+        if((lbl_Cat.Text == "Shirt") || (lbl_Cat.Text == "Pants"))
+        {
+            DropDownList1.Visible = true;
+            DropDownList2.Visible = false;
+        }
+        else
+        {
+            DropDownList2.Visible = true;
+            DropDownList1.Visible = false;
+        }
+
+        if(prod.Product_Quantity <= 0)
+        {
+            Btn_Add.Visible = false;
+        }
     }
 
     protected void Btn_Add_Click(object sender, EventArgs e)

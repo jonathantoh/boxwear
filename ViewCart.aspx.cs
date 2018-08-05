@@ -15,6 +15,7 @@ public partial class ViewCart : System.Web.UI.Page
         {
             LoadCart();
         }
+
        
     }
     protected void LoadCart()
@@ -54,23 +55,28 @@ public partial class ViewCart : System.Web.UI.Page
         LoadCart();
     }
 
-    protected void btn_Update_Click(object sender, EventArgs e)
+    //protected void btn_Update_Click(object sender, EventArgs e)
+    //{
+    //    foreach (GridViewRow row in gv_CartView.Rows)
+    //    {
+    //        try
+    //        {
+    //            string productId = gv_CartView.DataKeys[row.RowIndex].Value.ToString();
+
+    //            int quantity = int.Parse(((TextBox)row.Cells[2].FindControl("tb_Quantity")).Text);
+    //            ShoppingCart.Instance.SetItemQuantity(productId, quantity);
+    //        }
+    //        catch (FormatException e1)
+    //        {
+    //            lbl_Error.Text = e1.Message.ToString();
+    //        }
+    //    }
+    //    LoadCart();
+    //} 
+
+
+    protected void btn_Remove_Click(object sender, EventArgs e)
     {
-        foreach (GridViewRow row in gv_CartView.Rows)
-        {
-            try
-            {
-                string productId = gv_CartView.DataKeys[row.RowIndex].Value.ToString();
 
-                int quantity = int.Parse(((TextBox)row.Cells[2].FindControl("tb_Quantity")).Text);
-                ShoppingCart.Instance.SetItemQuantity(productId, quantity);
-            }
-            catch (FormatException e1)
-            {
-                lbl_Error.Text = e1.Message.ToString();
-            }
-        }
-        LoadCart();
     }
-
 }

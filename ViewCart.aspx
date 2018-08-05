@@ -34,9 +34,13 @@
                                     <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="tb_Quantity" runat="server" style="width:98%;" Text='<%# Eval("Quantity") %>'></asp:TextBox>
+                                             <asp:Label ID="lbl_qty" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                           <%-- <asp:TextBox ID="tb_Quantity" runat="server" style="width:98%;" Text='<%# Eval("Quantity") %>'></asp:TextBox>--%>
                                             <br />
-                                            <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" CommandArgument='<%# Eval("ItemID") %>'>Remove</asp:LinkButton> 
+                                            <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" CommandArgument='<%# Eval("ItemID") %>' OnClick="btn_Remove_Click">Remove</asp:LinkButton> 
+                                          
+                                            <br />
+                                           
                                           
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -61,7 +65,7 @@
     <asp:Label ID="lbl_Error" runat="server"></asp:Label>
 
 <br />
-<asp:Button ID="btn_Update" class="btn btn-warning" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />
+<%--<asp:Button ID="btn_Update" class="btn btn-warning" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />--%>
 <asp:Button ID="btn_Clear"  class="btn btn-danger" runat="server" OnClick="btn_Clear_Click" Text="Clear Cart" />
     <a href="checkout.aspx" class="btn btn-primary">Checkout</a>
                   </div>
