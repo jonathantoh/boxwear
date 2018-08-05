@@ -11,23 +11,49 @@ using System.Web;
 /// </summary>
 public class Feedback
 {
-    private string FName;
-    private string LName;
-    private string Email;
-    private string OrderNo;
-    private string Message;
+    private string _FName;
+    private string _LName;
+    private string _Email;
+    private string _OrderNo;
+    private string _Message;
+    private int _Id;
 
     string _connStr = ConfigurationManager.ConnectionStrings["BoxWearDB"].ConnectionString;
 
+    public Feedback(int Id, string FName, string LName, string Email, string OrderNo, string Message)
+    {
+        _Id = Id;
+        _FName = FName;
+        _LName = LName;
+        _Email = Email;
+        _OrderNo = OrderNo;
+        _Message = Message;
+
+    }
+
+    public Feedback(string FName, string LName, string Email, string OrderNo, string Message)
+        : this(0, FName, LName, Email, OrderNo, Message)
+    {
+    }
+
+    public Feedback(int Id)
+        : this(Id, "", "", "", "", "")
+    {
+    }
+
+    public Feedback()
+    {
+    }
 
     //overloaded class constructor with 4 parameters
-    public Feedback(string FName, string LName, string Email, string OrderNo, string Message)
+    /**public Feedback(string FName, string LName, string Email, string OrderNo, string Message, int Id)
     {
         this.FName = FName;
         this.LName = LName;
         this.Email = Email;
         this.OrderNo = OrderNo;
         this.Message = Message;
+        this.Id = Id;
     }
     //Empty or Default class constructo
     public Feedback()
@@ -37,48 +63,44 @@ public class Feedback
         this.Email = null;
         this.OrderNo = null;
         this.Message = null;
-    }
+        this.Id = 0;   
+    } **/
 
-    //DELTE METHOD FROM FEEDBACK ADMIN
-    public int FeedbackDelete(string OrderNo)
-    {
-        string queryStr = "DELETE FROM feedback WHERE feedbackOrderNo=@OrderNo";
-        SqlConnection conn = new SqlConnection(_connStr);
-        SqlCommand cmd = new SqlCommand(queryStr, conn);
-        cmd.Parameters.AddWithValue("@OrderNo", OrderNo);
-        conn.Open();
-        int nofRow = 0;
-        nofRow = cmd.ExecuteNonQuery();
-        conn.Close();
-        return nofRow;
-    }//end DELTE
+
 
     public string feedbackFName
     {
-        get { return FName; }
-        set { FName = value; }
+        get { return _FName; }
+        set { _FName = value; }
     }
     public string feedbackLName
     {
-        get { return LName; }
-        set { LName = value; }
+        get { return _LName; }
+        set { _LName = value; }
     }
 
     public string feedbackEmail
     {
-        get { return Email; }
-        set { Email = value; }
+        get { return _Email; }
+        set { _Email = value; }
     }
     public string feedbackOrderNo
     {
-        get { return OrderNo; }
-        set { OrderNo = value; }
+        get { return _OrderNo; }
+        set { _OrderNo = value; }
     }
     public string feedbackMessage
     {
-        get { return Message; }
-        set { Message = value; }
+        get { return _Message; }
+        set { _Message = value; }
     }
+    public int feedbackId
+    {
+        get { return _Id; }
+        set { _Id = value; }
+    }
+
+    public object Id { get; private set; }
 
     public int feedbackinsert()
     {
@@ -90,11 +112,11 @@ public class Feedback
         {
             SqlConnection conn = new SqlConnection(_connStr);
             SqlCommand cmd = new SqlCommand(queryStr, conn);
-            cmd.Parameters.AddWithValue("@feedbackFName", this.FName);
-            cmd.Parameters.AddWithValue("@feedbackLName", this.LName);
-            cmd.Parameters.AddWithValue("@feedbackEmail", this.Email);
-            cmd.Parameters.AddWithValue("@feedbackOrderNo", this.OrderNo);
-            cmd.Parameters.AddWithValue("@feedbackMessage", this.Message);
+            cmd.Parameters.AddWithValue("@feedbackFName", this._FName);
+            cmd.Parameters.AddWithValue("@feedbackLName", this._LName);
+            cmd.Parameters.AddWithValue("@feedbackEmail", this._Email);
+            cmd.Parameters.AddWithValue("@feedbackOrderNo", this._OrderNo);
+            cmd.Parameters.AddWithValue("@feedbackMessage", this._Message);
 
             conn.Open();
             result += cmd.ExecuteNonQuery(); // Returns no. of rows affected. Must be > 0
@@ -102,20 +124,35 @@ public class Feedback
             return result;
         }
         catch (Exception ex)
-        { return 0;
+        {
+            return 0;
         }
     }//end Insert
 
+    //DELTE METHOD FROM FEEDBACK ADMIN
+    public int FeedbackDelete(int Id)
+    {
+        string queryStr = "DELETE FROM feedback WHERE feedbackId= '" + Id + "'";
+        SqlConnection conn = new SqlConnection(_connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        cmd.Parameters.AddWithValue("@Id", Id);
+        conn.Open();
+        int nofRow = 0;
+        nofRow = cmd.ExecuteNonQuery();
+        conn.Close();
+        return nofRow;
+    }//end DELTE
+
     //ADMIN PART
-    public Feedback getfeedback(string OrderNo)
+    public Feedback getfeedback(int Id)
     {
 
         Feedback feedbackDetails = null;
 
-        string FName, LName, Email, Message;
+        string FName, LName, Email, Message, OrderNo;
         SqlConnection conn = new SqlConnection(_connStr);
         conn.Open();
-        string query = "select * from feedback where feedbackOrderNo ='" + OrderNo + "'";
+        string query = "select * from feedback where feedbackId ='" + Id + "'";
         SqlCommand cmd = new SqlCommand(query, conn);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
         DataSet ds = new DataSet();
@@ -130,8 +167,8 @@ public class Feedback
             Email = ds.Tables[0].Rows[0]["feedbackEmail"].ToString();
             OrderNo = ds.Tables[0].Rows[0]["feedbackOrderNo"].ToString();
             Message = ds.Tables[0].Rows[0]["feedbackMessage"].ToString();
-           
-           
+
+
 
             feedbackDetails = new Feedback(FName, LName, Email, OrderNo, Message);
         }
@@ -165,16 +202,17 @@ public class Feedback
         while (dr.Read())
         {
 
-            FName = dr["feedbackFName"].ToString();
-            LName = dr["feedbackLName"].ToString();
-            Email = dr["feedbackEmail"].ToString();
-            OrderNo = dr["feedbackOrderNo"].ToString();
-            Message = dr["feedbackMessage"].ToString();
+            _FName = dr["feedbackFName"].ToString();
+            _LName = dr["feedbackLName"].ToString();
+            _Email = dr["feedbackEmail"].ToString();
+            _OrderNo = dr["feedbackOrderNo"].ToString();
+            _Message = dr["feedbackMessage"].ToString();
+            _Id = int.Parse(dr["feedbackId"].ToString());
 
 
 
             Feedback feedbackDetails = null;
-            feedbackDetails = new Feedback(FName, LName, Email, OrderNo, Message);
+            feedbackDetails = new Feedback(_Id, _FName, _LName, _Email, _OrderNo, _Message);
             feedbackList.Add(feedbackDetails);
         }
         conn.Close();
@@ -186,7 +224,7 @@ public class Feedback
 
     }
 
- 
+
 }
 
-    
+

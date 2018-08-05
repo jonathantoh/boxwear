@@ -13,7 +13,7 @@ public partial class admin_feedback : System.Web.UI.Page
     Feedback feedback = new Feedback();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
 
         if (!IsPostBack)
         {
@@ -38,7 +38,8 @@ public partial class admin_feedback : System.Web.UI.Page
         int result = 0;
         Feedback feedback = new Feedback();
         string categoryID = gvFeedback.DataKeys[e.RowIndex].Value.ToString();
-        result = feedback.FeedbackDelete(categoryID);
+        int categoryID1 = Int32.Parse(categoryID);
+        result = feedback.FeedbackDelete(categoryID1);
 
         if (result > 0)
         {
@@ -58,10 +59,10 @@ public partial class admin_feedback : System.Web.UI.Page
         GridViewRow row = gvFeedback.SelectedRow;
         // Get Product ID from the selected row, which is the
         // first row, i.e. index 0.
-        string OrderNo = row.Cells[3].Text;
+        string id = row.Cells[0].Text;
         // Redirect to next page, with the Product Id added to the URL,
         // e.g. ProductDetails.aspx?ProdID=1
-        Response.Redirect("admin-feedback-details.aspx?OrderNo=" + OrderNo);
+        Response.Redirect("admin-feedback-details.aspx?id=" + id);
     }
 
 }

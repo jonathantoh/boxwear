@@ -20,13 +20,13 @@ public partial class OrderIssues : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         int result = 0;
-     
+
         Feedback feedback = new Feedback(txtFName.Text, txtLName.Text, txtEmail.Text, txtOrderNo.Text, txtMessage.Text);
         result = feedback.feedbackinsert();
         if (result > 0)
         {
             Response.Write("<script>alert('Insert successful');</script>");
-            
+
         }
         else
         {
