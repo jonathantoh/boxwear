@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class SelectedProduct : System.Web.UI.Page
 {
     Products prod = null;
-
+    Products aProd = new Products();
     protected void Page_Load(object sender, EventArgs e)
     {
         Products aProd = new Products();
@@ -30,6 +30,11 @@ public partial class SelectedProduct : System.Web.UI.Page
 
     protected void Btn_Add_Click(object sender, EventArgs e)
     {
+        string ID = Request.QueryString["ProdID"].ToString();
+        string decreasingID = ID;
+        List<Products> prodList = new List<Products>();
+        prodList = aProd.getProductAllDescrease(decreasingID);
+
         prod.Product_SizeCust = DropDownList1.SelectedItem.Text;
         string iProductID = prod.Product_ID.ToString();
         ShoppingCart.Instance.AddItem(iProductID, prod);

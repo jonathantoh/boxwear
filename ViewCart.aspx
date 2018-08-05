@@ -36,7 +36,8 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="tb_Quantity" runat="server" style="width:98%;" Text='<%# Eval("Quantity") %>'></asp:TextBox>
                                             <br />
-                                          <!-- <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" Text='<%# Eval("ItemID") %>'></asp:LinkButton> -->
+                                            <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" CommandArgument='<%# Eval("ItemID") %>'>Remove</asp:LinkButton> 
+                                          
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Product_SizeCust" HeaderText="Size" />

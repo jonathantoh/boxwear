@@ -326,50 +326,98 @@ public class Products
         dr.Dispose();
 
         return prodList;
-    } 
+    }
 
-    /** public List<Products> getProductAllByProductQuantity(string productQuantity)
-     {
-         List<Products> prodList = new List<Products>();
-
-
-         string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level, prod_Size;
-         decimal unit_Price;
-         int stock_Quantity;
+    //Decrease product method
+    public List<Products> getProductAllDescrease(string decreaseID)
+    {
+        List<Products> prodList = new List<Products>();
 
 
-         string queryStr = "SELECT * FROM Outfits WHERE OutfitQuantity >3'" + productQuantity + "'"; 
+        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level, prod_Size;
+        decimal unit_Price;
+        int stock_Quantity;
 
 
-         SqlConnection conn = new SqlConnection(connStr);
-         SqlCommand cmd = new SqlCommand(queryStr, conn);
-         conn.Open();
-         SqlDataReader dr = cmd.ExecuteReader();
+        string queryStr = "update Outfits set OutfitQuantity = OutfitQuantity - 1 where OutfitID='" + decreaseID + "'";
 
 
-         //Continue to read the resultsets row by row if not the end
-         while (dr.Read())
-         {
-             prod_ID = dr["OutfitID"].ToString();
-             prod_Name = dr["OutfitName"].ToString();
-             prod_Desc = dr["OutfitDesc"].ToString();
-             prod_Image = dr["OutfitImage"].ToString();
-             prod_Category = dr["OutfitCategory"].ToString();
-             prod_Brand = dr["OutfitBrand"].ToString();
-             unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
-             stock_Level = dr["OutfitStatus"].ToString();
-             stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
-             prod_Size = dr["OutfitSize"].ToString();
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        //cmd.Parameters.AddWithValue("@ProdID");
+        conn.Open();
+        SqlDataReader dr = cmd.ExecuteReader();
 
-             Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
-             prodList.Add(a);
-         }
-         conn.Close();
-         dr.Close();
-         dr.Dispose();
 
-         return prodList;
-     }**/
+        //Continue to read the resultsets row by row if not the end
+        while (dr.Read())
+        {
+            prod_ID = dr["OutfitID"].ToString();
+            prod_Name = dr["OutfitName"].ToString();
+            prod_Desc = dr["OutfitDesc"].ToString();
+            prod_Image = dr["OutfitImage"].ToString();
+            prod_Category = dr["OutfitCategory"].ToString();
+            prod_Brand = dr["OutfitBrand"].ToString();
+            unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
+            stock_Level = dr["OutfitStatus"].ToString();
+            stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
+            prod_Size = dr["OutfitSize"].ToString();
+
+            Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
+            prodList.Add(a);
+        }
+        conn.Close();
+        dr.Close();
+        dr.Dispose();
+
+        return prodList;
+    }
+
+    //Increase product method
+    public List<Products> getProductAllIncrease(string increaseID)
+    {
+        List<Products> prodList = new List<Products>();
+
+
+        string prod_Name, prod_Desc, prod_Image, prod_ID, prod_Category, prod_Brand, stock_Level, prod_Size;
+        decimal unit_Price;
+        int stock_Quantity;
+
+
+        string queryStr = "update Outfits set OutfitQuantity = OutfitQuantity + 1 where OutfitID='" + increaseID + "'";
+
+
+        SqlConnection conn = new SqlConnection(connStr);
+        SqlCommand cmd = new SqlCommand(queryStr, conn);
+        //cmd.Parameters.AddWithValue("@ProdID");
+        conn.Open();
+        SqlDataReader dr = cmd.ExecuteReader();
+
+
+        //Continue to read the resultsets row by row if not the end
+        while (dr.Read())
+        {
+            prod_ID = dr["OutfitID"].ToString();
+            prod_Name = dr["OutfitName"].ToString();
+            prod_Desc = dr["OutfitDesc"].ToString();
+            prod_Image = dr["OutfitImage"].ToString();
+            prod_Category = dr["OutfitCategory"].ToString();
+            prod_Brand = dr["OutfitBrand"].ToString();
+            unit_Price = decimal.Parse(dr["OutfitPrice"].ToString());
+            stock_Level = dr["OutfitStatus"].ToString();
+            stock_Quantity = int.Parse(dr["OutfitQuantity"].ToString());
+            prod_Size = dr["OutfitSize"].ToString();
+
+            Products a = new Products(prod_ID, prod_Name, prod_Desc, prod_Brand, stock_Quantity, unit_Price, prod_Image, prod_Category, stock_Level, prod_Size); //Changes prod_Brand
+            prodList.Add(a);
+        }
+        conn.Close();
+        dr.Close();
+        dr.Dispose();
+
+        return prodList;
+    }
+
     public List<Products> getProductByQuantityLow()
     {
         List<Products> prodList = new List<Products>();

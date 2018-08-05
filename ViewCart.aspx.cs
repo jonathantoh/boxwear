@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class ViewCart : System.Web.UI.Page
 {
+    Products aProd = new Products();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -14,7 +15,7 @@ public partial class ViewCart : System.Web.UI.Page
         {
             LoadCart();
         }
-        //  lbl_Size.Text = //trying to display size
+       
     }
     protected void LoadCart()
     {
@@ -34,10 +35,14 @@ public partial class ViewCart : System.Web.UI.Page
     {
         if (e.CommandName == "Remove")
         {
-            lbl_Error.Text = "Message : " + e.CommandArgument.ToString();
+            lbl_Error.Text = "Message : " + e.CommandArgument.ToString() + " " + "was successfully removed!";
             string productId = e.CommandArgument.ToString();
             ShoppingCart.Instance.RemoveItem(productId);
             LoadCart();
+
+            string increasingID = e.CommandArgument.ToString();
+            List<Products> prodList = new List<Products>();
+            prodList = aProd.getProductAllIncrease(increasingID);
         }
     }
 
