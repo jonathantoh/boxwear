@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
 
-    <%--<link href="bootstrap/css/bootstrap.css" rel="stylesheet" />--%>
+    <%--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
   <%--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
     <style type="text/css">
@@ -13,6 +14,10 @@
 
         .auto-style4 {
             height: 27px;
+        }
+
+        .auto-style5 {
+            font-size: large;
         }
 
         </style>
@@ -83,13 +88,25 @@
         <h2>$<asp:Label ID="lbl_Price" runat="server"></asp:Label>
         </h2>
         <br />
-        <h4>Shirt size:</h4>
+        <h4><asp:Label ID="lbl_Cat" runat="server"></asp:Label>
+            size:</h4>
 &nbsp;<asp:DropDownList ID="DropDownList1" runat="server" Height="39px" Width="89px">
                         <asp:ListItem>X-Small</asp:ListItem>
                         <asp:ListItem>Small</asp:ListItem>
                         <asp:ListItem>Medium</asp:ListItem>
                         <asp:ListItem>Large</asp:ListItem>
                         <asp:ListItem>X-Large</asp:ListItem>
+        </asp:DropDownList>
+
+        <asp:DropDownList ID="DropDownList2" runat="server" Height="39px" Width="89px">
+            <asp:ListItem>36</asp:ListItem>
+            <asp:ListItem>37</asp:ListItem>
+            <asp:ListItem>38</asp:ListItem>
+            <asp:ListItem>39</asp:ListItem>
+            <asp:ListItem>40</asp:ListItem>
+            <asp:ListItem>41</asp:ListItem>
+            <asp:ListItem>42</asp:ListItem>
+            <asp:ListItem>43</asp:ListItem>
         </asp:DropDownList>
 
         <br />
@@ -101,6 +118,11 @@
 
         <br />
         <asp:Button ID="Btn_Add" CssClass="btn btn-default btn-lg" runat="server" OnClick="Btn_Add_Click"  Height="47px" Width="155px" Text="Add To Cart"></asp:Button> 
+        
+          
+        <strong>
+        <asp:Label ID="lbl_stocks" runat="server" CssClass="auto-style5" Text="Out of stock!"></asp:Label>
+        </strong> 
         
           
     </div>
