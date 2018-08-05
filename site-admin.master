@@ -51,7 +51,7 @@
         }
 
         .navbar-default {
-            background-color: #e74c3c;
+            background-color: #f6546a;
             border-color: #c0392b;
         }
 

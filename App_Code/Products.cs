@@ -374,7 +374,7 @@ public class Products
     }
 
     //Increase product method
-    public List<Products> getProductAllIncrease(string increaseID)
+    public List<Products> getProductAllIncrease(int increaseQty, string increaseID)
     {
         List<Products> prodList = new List<Products>();
 
@@ -383,9 +383,9 @@ public class Products
         decimal unit_Price;
         int stock_Quantity;
 
-
-        string queryStr = "update Outfits set OutfitQuantity = OutfitQuantity + 1 where OutfitID='" + increaseID + "'";
-
+        //string queryStr = "update Outfits set OutfitQuantity =" + increaseQty + "where OutfitID='" + increaseID + "'";
+        string queryStr = "update Outfits set OutfitQuantity = OutfitQuantity + '"+ increaseQty +"' where OutfitID='" + increaseID + "'";
+        //string queryStr = "update Outfits set OutfitQuantity = OutfitQuantity + 1 where OutfitID='" + increaseID + "'";
 
         SqlConnection conn = new SqlConnection(connStr);
         SqlCommand cmd = new SqlCommand(queryStr, conn);

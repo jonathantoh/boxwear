@@ -25,7 +25,7 @@
                     <tbody>
                         <tr>
                             <td>
-                            <asp:GridView ID="gv_CartView" runat="server" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand" style="width:100%;border-collapse:collapse;margin:0px auto 0px auto" GridLines="None"  cellpadding="10" cellspacing="5">
+                            <asp:GridView ID="gv_CartView" runat="server" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand" style="width:100%;border-collapse:collapse;margin:0px auto 0px auto" GridLines="None"  cellpadding="10" cellspacing="5" OnSelectedIndexChanged="gv_CartView_SelectedIndexChanged">
                                 <Columns>
                                     <asp:ImageField DataImageUrlField="Product_Image" ControlStyle-Width="70" ControlStyle-Height="70">
                         <ControlStyle Height="70px" Width="70px"></ControlStyle>
@@ -34,9 +34,13 @@
                                     <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="tb_Quantity" runat="server" style="width:98%;" Text='<%# Eval("Quantity") %>'></asp:TextBox>
+                                             <asp:Label ID="lbl_qty" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                           <%-- <asp:TextBox ID="tb_Quantity" runat="server" style="width:98%;" Text='<%# Eval("Quantity") %>'></asp:TextBox>--%>
                                             <br />
-                                            <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" CommandArgument='<%# Eval("ItemID") %>'>Remove</asp:LinkButton> 
+                                            <asp:LinkButton ID="btn_Remove" runat="server" CommandName="Remove" CommandArgument='<%# Eval("ItemID") %>' OnClick="btn_Remove_Click">Remove</asp:LinkButton> 
+                                          
+                                            <br />
+                                           
                                           
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -61,7 +65,7 @@
     <asp:Label ID="lbl_Error" runat="server"></asp:Label>
 
 <br />
-<asp:Button ID="btn_Update" class="btn btn-warning" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />
+<%--<asp:Button ID="btn_Update" class="btn btn-warning" runat="server" OnClick="btn_Update_Click" Text="Update Cart" />--%>
 <asp:Button ID="btn_Clear"  class="btn btn-danger" runat="server" OnClick="btn_Clear_Click" Text="Clear Cart" />
     <a href="checkout.aspx" class="btn btn-primary">Checkout</a>
                   </div>
