@@ -16,7 +16,7 @@ public partial class ViewCart : System.Web.UI.Page
             LoadCart();
         }
 
-       
+
     }
     protected void LoadCart()
     {
@@ -34,16 +34,26 @@ public partial class ViewCart : System.Web.UI.Page
 
     protected void gv_CartView_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        if (e.CommandName == "Remove")
+        foreach (GridViewRow row in gv_CartView.Rows)
         {
-            lbl_Error.Text = "Message : " + e.CommandArgument.ToString() + " " + "was successfully removed!";
-            string productId = e.CommandArgument.ToString();
-            ShoppingCart.Instance.RemoveItem(productId);
-            LoadCart();
 
-            string increasingID = e.CommandArgument.ToString();
-            List<Products> prodList = new List<Products>();
-            prodList = aProd.getProductAllIncrease(increasingID);
+
+            if (e.CommandName == "Remove")
+            {
+                lbl_Error.Text = "Message : " + e.CommandArgument.ToString() + " " + "was successfully removed!";
+                string productId = e.CommandArgument.ToString();
+                ShoppingCart.Instance.RemoveItem(productId);
+                LoadCart();
+
+
+
+                string str = ((Label)row.FindControl("lbl_qty")).Text;
+                int increasingQuantity = int.Parse(str);
+                string increasingID = e.CommandArgument.ToString();
+                List<Products> prodList = new List<Products>();
+                prodList = aProd.getProductAllIncrease(increasingQuantity, increasingID);
+
+            }
         }
     }
 
@@ -78,5 +88,10 @@ public partial class ViewCart : System.Web.UI.Page
     protected void btn_Remove_Click(object sender, EventArgs e)
     {
 
+    }
+
+    protected void gv_CartView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+         
     }
 }

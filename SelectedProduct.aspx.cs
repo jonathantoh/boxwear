@@ -26,6 +26,7 @@ public partial class SelectedProduct : System.Web.UI.Page
 
         // Store the value in invisible fields
         lbl_Price.Text = prod.Product_Price.ToString();
+        lbl_stocks.Visible = false;
 
         if((lbl_Cat.Text == "Shirt") || (lbl_Cat.Text == "Pants"))
         {
@@ -40,6 +41,7 @@ public partial class SelectedProduct : System.Web.UI.Page
 
         if(prod.Product_Quantity <= 0)
         {
+            lbl_stocks.Visible = true;
             Btn_Add.Visible = false;
         }
     }

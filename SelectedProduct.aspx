@@ -16,6 +16,10 @@
             height: 27px;
         }
 
+        .auto-style5 {
+            font-size: large;
+        }
+
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -114,6 +118,11 @@
 
         <br />
         <asp:Button ID="Btn_Add" CssClass="btn btn-default btn-lg" runat="server" OnClick="Btn_Add_Click"  Height="47px" Width="155px" Text="Add To Cart"></asp:Button> 
+        
+          
+        <strong>
+        <asp:Label ID="lbl_stocks" runat="server" CssClass="auto-style5" Text="Out of stock!"></asp:Label>
+        </strong> 
         
           
     </div>

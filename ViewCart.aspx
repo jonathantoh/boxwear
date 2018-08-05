@@ -25,7 +25,7 @@
                     <tbody>
                         <tr>
                             <td>
-                            <asp:GridView ID="gv_CartView" runat="server" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand" style="width:100%;border-collapse:collapse;margin:0px auto 0px auto" GridLines="None"  cellpadding="10" cellspacing="5">
+                            <asp:GridView ID="gv_CartView" runat="server" AutoGenerateColumns="False" DataKeyNames="ItemID" OnRowCommand="gv_CartView_RowCommand" style="width:100%;border-collapse:collapse;margin:0px auto 0px auto" GridLines="None"  cellpadding="10" cellspacing="5" OnSelectedIndexChanged="gv_CartView_SelectedIndexChanged">
                                 <Columns>
                                     <asp:ImageField DataImageUrlField="Product_Image" ControlStyle-Width="70" ControlStyle-Height="70">
                         <ControlStyle Height="70px" Width="70px"></ControlStyle>
